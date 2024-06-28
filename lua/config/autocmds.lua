@@ -6,3 +6,19 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+local autocmd = vim.api.nvim_create_autocmd
+
+-- TODO: Problem with this
+-- autocmd("VimEnter", {
+--   callback = function()
+--     local args = vim.v.argv
+--     if #args >= 2 then
+--       if args[#args] == "." then
+--         print("neovim last arg was '.', running current dir session.")
+--         vim.cmd(":SessionManager load_current_dir_session")
+--       end
+--     end
+--   end,
+--   once = true,
+-- })
