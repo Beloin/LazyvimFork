@@ -16,3 +16,8 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
 1. Use `bear -- make`, this creates metadata in `compile_commands.json`
 
 ### CMake
+
+
+## Python
+
+1. Install pyvim: `python3 -m pip install pynvim --upgrade`
