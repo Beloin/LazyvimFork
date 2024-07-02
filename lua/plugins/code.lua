@@ -31,6 +31,7 @@ return {
     requires = {
       "L3MON4D3/LuaSnip",
     },
+    event = "VeryLazy",
     config = function()
       local cheeky = require("cheeky")
       cheeky.setup({
