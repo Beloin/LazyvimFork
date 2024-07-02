@@ -1,3 +1,5 @@
+-- Most of cool pluguins are here: https://github.com/rockerBOO/awesome-neovim
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -64,5 +66,15 @@ return {
     end,
   },
 
-  -- TODO: Add commentary, cool scroll, sessions etc from NVChad
+  { "Tastyep/structlog.nvim" },
+
+  -- TODO: Configure scissors
+  -- https://github.com/chrisgrieser/nvim-scissors
+
+  -- TODO: Learn how to add this snippets to friedly-snippets
+  -- { "norcalli/snippets.nvim", event = "VeryLazy" },
+
+  -- TODO: Add skeleton
+  -- https://github.com/cvigilv/esqueleto.nvim
+  -- https://github.com/motosir/skel-nvim
 }
