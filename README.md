@@ -17,6 +17,10 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
 
 ### CMake
 
+1. For now generate compile_commands using cmake and copy to outer folder using this commands: 
+  - `cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1`
+  - `ln -s build/compile_commands.json compile_commands.json`
+
 
 ## Python
 
