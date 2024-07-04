@@ -25,3 +25,16 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
 ## Python
 
 1. Install pyvim: `python3 -m pip install pynvim --upgrade`
+
+## Java
+
+1. Default `Lazy.vim` Java extra
+2. Install maven 
+3. In Mason:
+  - `jdtls` -- Already should be installed by lazyvim
+  - `google-java-format`
+
+
+# Tests
+
+Already defaults on Lazy.extras
