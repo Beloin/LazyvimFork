@@ -11,3 +11,4 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
+map({ "i", "n" }, "<C-N>", "<cmd>Neotree toggle<cr>", { desc = "Open Neotree" })
