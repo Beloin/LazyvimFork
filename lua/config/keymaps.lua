@@ -12,3 +12,14 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
 map({ "i", "n" }, "<C-N>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" })
+
+-- LSP Mappings
+function opts(desc)
+    return {
+        buffer = bufnr,
+        desc = desc
+    }
+end
+
+map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
