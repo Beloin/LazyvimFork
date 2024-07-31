@@ -12,16 +12,17 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("restore_session", { clear = true }),
   callback = function()
-    local args = vim.v.argv
-    if #args >= 2 then
-      if args[#args] == "." then
-        print("neovim last arg was '.', running current dir session.")
-        vim.cmd(":SessionManager load_current_dir_session")
-        -- vim.cmd(":bufdo e")
+    LazyVim.on_load("neovim-session-manager", function()
+      local args = vim.v.argv
+      if #args >= 2 then
+        if args[#args] == "." then
+          print("neovim last arg was '.', running current dir session.")
+          vim.cmd(":SessionManager load_current_dir_session")
+          -- vim.cmd(":bufdo e")
+        end
       end
-    end
+    end)
   end,
   nested = true,
   -- once = true
 })
-
