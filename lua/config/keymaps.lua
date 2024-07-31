@@ -14,7 +14,7 @@ map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
 map({ "i", "n" }, "<C-N>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" })
 
 -- LSP Mappings
-function opts(desc)
+local function opts(desc)
     return {
         buffer = bufnr,
         desc = desc
@@ -23,3 +23,25 @@ end
 
 map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
 map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+
+local neoscroll = require('neoscroll')
+neoscroll.setup({
+  -- Default easing function used in any animation where
+  -- the `easing` argument has not been explicitly supplied
+  easing = "quadratic"
+})
+local keymap = {
+  -- Use the "sine" easing function
+  ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250; easing = 'sine' }) end;
+  ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250; easing = 'sine' }) end;
+  -- Use the "circular" easing function
+  ["<C-b>"] = function() neoscroll.ctrl_b({ duration = 450; easing = 'circular' }) end;
+  ["<C-f>"] = function() neoscroll.ctrl_f({ duration = 450; easing = 'circular' }) end;
+  -- When no value is passed the `easing` option supplied in `setup()` is used
+  ["<C-y>"] = function() neoscroll.scroll(-0.1, { move_cursor=false; duration = 100 }) end;
+  ["<C-e>"] = function() neoscroll.scroll(0.1, { move_cursor=false; duration = 100 }) end;
+}
+local modes = { 'n', 'v', 'x' }
+for key, func in pairs(keymap) do
+    vim.keymap.set(modes, key, func)
+end
