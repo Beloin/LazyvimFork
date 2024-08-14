@@ -45,3 +45,7 @@ local modes = { 'n', 'v', 'x' }
 for key, func in pairs(keymap) do
     vim.keymap.set(modes, key, func)
 end
+
+map({"i","n"}, "<F8>", "<cmd>DapStepOver<CR>", { desc="Step Over" })
+map({"i","n"}, "<F7>", "<cmd>DapStepInto<CR>", { desc="Step Into" })
+map({"i","n"}, "<F10>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
