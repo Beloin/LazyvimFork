@@ -92,6 +92,14 @@ return {
 
   -- TODO: Configure scissors
   -- https://github.com/chrisgrieser/nvim-scissors
+  -- Variable list  https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables
+  {
+    "chrisgrieser/nvim-scissors",
+    dependencies = { "nvim-telescope/telescope.nvim", "garymjr/nvim-snippets" },
+    opts = {
+      snippetDir = vim.fn.stdpath("config") .. "/snippets/",
+    },
+  },
 
   -- TODO: Learn how to add this snippets to friedly-snippets
   -- { "norcalli/snippets.nvim", event = "VeryLazy" },
