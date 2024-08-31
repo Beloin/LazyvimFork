@@ -99,4 +99,19 @@ return {
   -- TODO: Add skeleton
   -- https://github.com/cvigilv/esqueleto.nvim
   -- https://github.com/motosir/skel-nvim
+  -- TODO: Skeleton is current bug
+  -- {
+  --   "cvigilv/esqueleto.nvim",
+  --   -- opts = {},
+  --   config = function()
+  --     require("esqueleto").setup()
+  --   end,
+  -- },
+
+  {
+    "motosir/skel-nvim",
+    config = function()
+      require("utils.setup-skel").setup()
+    end,
+  },
 }
