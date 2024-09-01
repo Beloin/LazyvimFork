@@ -80,4 +80,15 @@ return {
     ft = "perl",
     build = "make clean carp dancer highlight-all-pragmas moose test-more try-tiny",
   },
+
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("refactoring").setup()
+    end,
+  },
 }
