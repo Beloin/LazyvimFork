@@ -1,1 +1,1 @@
-{"hello":{"prefix":"hello","body":"std::cout << \"Hello From \" << \"${1:here}\" << std::endl;"}}
+{"dbgmessage":{"body":"std::cout << \"${1:debug}\" << std::endl;","prefix":"dbgmessage"},"hello":{"body":"std::cout << \"Hello From \" << \"${1:here}\" << std::endl;","prefix":"hello"}}
