@@ -55,7 +55,7 @@ return {
 
   { "Sirver/ultisnips", event = { "InsertEnter" } },
 
-  -- TODO: Check why is not working as it should
+  -- C++ code generator - Need to have LSP configured
   {
     "eriks47/generate.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
