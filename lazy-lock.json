@@ -69,6 +69,7 @@
   "omnisharp-extended-lsp.nvim": { "branch": "main", "commit": "aad7bf06b4ca0de816b919d475a75b30f5f62b61" },
   "persistence.nvim": { "branch": "main", "commit": "40a137dd9240c9c6760c53df48d2b155f52c252b" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
+  "refactoring.nvim": { "branch": "master", "commit": "c406fc5fb4d7ba5fce7b668637075fad6e75e9f8" },
   "skel-nvim": { "branch": "main", "commit": "db2f023c5a7bfbae6d5896be2cd0ceb0e6b92a80" },
   "structlog.nvim": { "branch": "main", "commit": "45b26a2b1036bb93c0e83f4225e85ab3cee8f476" },
   "symbol-usage.nvim": { "branch": "main", "commit": "533846260d3d053aebbf224617cc5294c219a8b1" },

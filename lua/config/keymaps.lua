@@ -49,3 +49,17 @@ end
 map({"i","n"}, "<F8>", "<cmd>DapStepOver<CR>", { desc="Step Over" })
 map({"i","n"}, "<F7>", "<cmd>DapStepInto<CR>", { desc="Step Into" })
 map({"i","n"}, "<F10>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
+
+-- Refactor maps
+map("x", "<leader>re", ":Refactor extract ")
+map("x", "<leader>rf", ":Refactor extract_to_file ")
+
+map("x", "<leader>rv", ":Refactor extract_var ")
+
+map({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
+
+map( "n", "<leader>rI", ":Refactor inline_func")
+
+map("n", "<leader>rb", ":Refactor extract_block")
+map("n", "<leader>rbf", ":Refactor extract_block_to_file")
+
