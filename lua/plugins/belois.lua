@@ -90,7 +90,6 @@ return {
     end,
   },
 
-  -- TODO: Configure scissors
   -- https://github.com/chrisgrieser/nvim-scissors
   -- Variable list  https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables
   {
@@ -103,18 +102,6 @@ return {
 
   -- TODO: Learn how to add this snippets to friedly-snippets
   -- { "norcalli/snippets.nvim", event = "VeryLazy" },
-
-  -- TODO: Add skeleton
-  -- https://github.com/cvigilv/esqueleto.nvim
-  -- https://github.com/motosir/skel-nvim
-  -- TODO: Skeleton is current bug
-  -- {
-  --   "cvigilv/esqueleto.nvim",
-  --   -- opts = {},
-  --   config = function()
-  --     require("esqueleto").setup()
-  --   end,
-  -- },
 
   {
     "motosir/skel-nvim",
