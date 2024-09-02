@@ -21,8 +21,9 @@ local function opts(desc)
     }
 end
 
-map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
-map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+-- TODO: remove this
+-- map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
+-- map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
 
 local neoscroll = require('neoscroll')
 neoscroll.setup({
