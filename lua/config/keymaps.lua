@@ -21,7 +21,7 @@ local function opts(desc)
     }
 end
 
--- TODO: remove this
+-- TODO: Removed since <C-k> does the jeob
 -- map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
 -- map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
 
