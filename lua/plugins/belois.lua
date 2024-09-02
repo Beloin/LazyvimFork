@@ -131,12 +131,13 @@ return {
     lazy = false,
   },
 
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
-    opts = {},
-    config = function(_, opts)
-      require("lsp_signature").setup(opts)
-    end,
-  },
+  -- TODO: How to use only this instead of both?
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   event = "VeryLazy",
+  --   opts = {},
+  --   config = function(_, opts)
+  --     require("lsp_signature").setup(opts)
+  --   end,
+  -- },
 }
