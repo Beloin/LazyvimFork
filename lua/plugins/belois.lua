@@ -19,11 +19,6 @@ return {
   },
 
   {
-    "Shatur/neovim-session-manager",
-    event = "VimEnter",
-  },
-
-  {
     "smoka7/multicursors.nvim",
     event = "VeryLazy",
     dependencies = {
