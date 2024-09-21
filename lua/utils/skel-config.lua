@@ -54,8 +54,16 @@ local function end_folder_namespace(config)
   return "}"
 end
 
+local function folder_name(config)
+  local fullname = config.filename
+  local folderlist = mysplit(fullname, "/")
+  local folder = folderlist[#folderlist - 1]
+  return folder
+end
+
 M.folder_namespace = folder_namespace
 M.end_folder_namespace = end_folder_namespace
 M.guard_name = guard_name
+M.folder_name = folder_name
 
 return M
