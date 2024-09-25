@@ -7,7 +7,8 @@ M.setup = function()
     -- file pattern -> template mappings
     mappings = {
       -- ["*.cpp"] = "cpp.skel",
-      ["*.hpp"] = "h.skel",
+      ["*.hpp"] = "hpp.skel",
+      ["*.h"] = "h.skel",
       ["*.go"] = "go.skel",
       -- patterns can map to multiple templates
       -- ["LICENSE"] = { "license.mit.skel", "license.gpl.skel" },
@@ -18,6 +19,7 @@ M.setup = function()
       ["END_FOLDER_NAMESPACE"] = skconf.end_folder_namespace,
       ["HEADER_GUARD"] = skconf.guard_name,
       ["FOLDER_NAME"] = skconf.folder_name,
+      ["NAME"] = "Beloin Rodrigues",
     },
   })
 end
