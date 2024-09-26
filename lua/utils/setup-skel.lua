@@ -10,6 +10,7 @@ M.setup = function()
       ["*.hpp"] = "hpp.skel",
       ["*.h"] = "h.skel",
       ["*.go"] = "go.skel",
+      ["*.cs"] = "csharp.skel",
       -- patterns can map to multiple templates
       -- ["LICENSE"] = { "license.mit.skel", "license.gpl.skel" },
     },
@@ -20,6 +21,11 @@ M.setup = function()
       ["HEADER_GUARD"] = skconf.guard_name,
       ["FOLDER_NAME"] = skconf.folder_name,
       ["NAME"] = "Beloin Rodrigues",
+
+      -- Csharp only
+      ["CS_CLASS_NAME"] = skconf.get_classname,
+      ["CS_NAMESPACE"] = skconf.get_cs_namespace,
+      ["CS_TYPE"] = skconf.get_type,
     },
   })
 end
