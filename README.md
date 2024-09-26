@@ -35,6 +35,17 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
   - `google-java-format`
 
 
+
+# Optionals
+
+## Plantuml
+
+Packages:
+1. [Plantuml](https://gitlab.com/itaranto/plantuml.nvim) 
+2. [SoilUml](https://github.com/javiorfo/nvim-soil) 
+
+- Install deps `sudo pacman -S plantuml imv feh`
+
 # Tests
 
 Already defaults on Lazy.extras
