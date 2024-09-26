@@ -1,0 +1,6 @@
+namespace @CS_NAMESPACE@;
+ 
+public @CS_TYPE@ @CS_CLASS_NAME@
+{
+ 
+}
