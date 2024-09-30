@@ -171,4 +171,11 @@ return {
       require("plantuml").setup()
     end,
   },
+
+  {
+    "Beloin/machuquei-ipsum.nvim",
+    config = function()
+      require("Machuquei").setup()
+    end,
+  },
 }
