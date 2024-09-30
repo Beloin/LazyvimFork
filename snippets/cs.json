@@ -1,1 +1,1 @@
-{"publicvar":{"body":"public ${1:type} ${2:Name} { get; set; }","prefix":"publicvar"},"requiredvar":{"body":"public required ${1:type} ${2:Name} { get; set; }","prefix":"requiredvar"},"prvtrd":{"body":"private readonly ${1:Type} _${2:name};","prefix":"prvtrd"}}
+{"requiredvar":{"prefix":"requiredvar","body":"public required ${1:type} ${2:Name} { get; set; }"},"prvtrd":{"prefix":"privaterd","body":"private readonly ${1:Type} _${2:name};"},"publicvar":{"prefix":"publicvar","body":"public ${1:type} ${2:Name} { get; set; }"}}
