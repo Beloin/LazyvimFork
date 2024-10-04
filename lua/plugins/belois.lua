@@ -178,4 +178,14 @@ return {
       require("Machuquei").setup()
     end,
   },
+
+  {
+    "Beloin/Launch.nvim",
+    config = function()
+      require("Launch").setup()
+    end,
+    dependencies = {
+      "folke/noice.nvim",
+    },
+  },
 }
