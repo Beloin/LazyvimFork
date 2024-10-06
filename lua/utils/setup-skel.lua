@@ -12,7 +12,7 @@ M.setup = function()
       ["*.go"] = "go.skel",
       ["*.cs"] = "csharp.skel",
       -- patterns can map to multiple templates
-      -- ["LICENSE"] = { "license.mit.skel", "license.gpl.skel" },
+      ["LICENSE"] = { "license.gpl.skel" },
     },
 
     substitutions = {
