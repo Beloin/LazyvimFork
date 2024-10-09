@@ -53,8 +53,6 @@ return {
     end,
   },
 
-  { "Sirver/ultisnips", event = { "InsertEnter" } },
-
   -- C++ code generator - Need to have LSP configured
   {
     "eriks47/generate.nvim",
