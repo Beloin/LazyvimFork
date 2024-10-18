@@ -11,7 +11,6 @@ local map = vim.keymap.set
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 
 map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
-map({ "i", "n" }, "<C-N>", "<cmd>Neotree toggle<cr>", { desc = "Toggle Neotree" })
 
 -- LSP Mappings
 local function opts(desc)
@@ -47,9 +46,15 @@ for key, func in pairs(keymap) do
     vim.keymap.set(modes, key, func)
 end
 
-map({"i","n"}, "<F8>", "<cmd>DapStepOver<CR>", { desc="Step Over" })
-map({"i","n"}, "<F7>", "<cmd>DapStepInto<CR>", { desc="Step Into" })
-map({"i","n"}, "<F10>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
+local dap = require("dap")
+map({ "i", "n" }, "<F7>", "<cmd>DapStepInto<CR>", { desc = "Step Into" })
+map({ "i", "n" }, "<F8>", "<cmd>DapStepOver<CR>", { desc = "Step Over" })
+map({ "i", "n" }, "<F9>", "<cmd>DapStepOut<CR>", { desc = "Step Out" })
+map({ "i", "n" }, "<F10>", function()
+  dap.restart()
+end, { desc = "Restart DAP Session" })
+map({"i","n"}, "<F11>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
+
 
 -- Refactor maps
 map("x", "<leader>re", ":Refactor extract ")
