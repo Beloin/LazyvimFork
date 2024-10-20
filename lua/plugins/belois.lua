@@ -98,7 +98,7 @@ return {
   {
     "motosir/skel-nvim",
     config = function()
-      require("utils.setup-skel").setup()
+      require("utils.skeleton.setup-skel").setup()
     end,
   },
 
