@@ -3,6 +3,7 @@ local M = {}
 M.setup = function()
   local skconf = require("utils.skeleton.skel-config")
   local cmake_skconf = require("utils.skeleton.cmake-skconf")
+  local java_skconf = require("utils.skeleton.java-skconf")
   require("skel-nvim").setup({
 
     -- file pattern -> template mappings
@@ -12,12 +13,13 @@ M.setup = function()
       ["*.h"] = "h.skel",
       ["*.go"] = "go.skel",
       ["*.cs"] = "csharp.skel",
+      ["*.java"] = "java.skel",
 
       -- Other's skels
       ["*CMakeLists.txt"] = "cmake.skel",
 
       -- patterns can map to multiple templates
-      ["LICENSE"] = { "license.gpl.skel" },
+      ["LICENSE"] = "license.gpl.skel",
     },
 
     substitutions = {
@@ -35,6 +37,11 @@ M.setup = function()
       -- CMAKE Only
       ["CMAKE_VERSION"] = cmake_skconf.cmake_version,
       ["LIB_OR_PROJECT"] = cmake_skconf.lib_or_project,
+
+      -- Java only
+      ["JAVA_CLASSNAME"] = java_skconf.get_classname,
+      ["JAVA_PACKAGE"] = java_skconf.get_package,
+      ["JAVA_TYPE"] = java_skconf.get_type,
     },
   })
 end
