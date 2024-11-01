@@ -1,6 +1,18 @@
-return {{
+return {
+  {
+    "rcarriga/cmp-dap",
+    dependencies = { "nvim-cmp" },
+    config = function()
+      require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+    end,
+  },
+  {
     "rcarriga/nvim-dap-ui",
-    dependencies = {"nvim-neotest/nvim-nio"},
+    dependencies = { "nvim-neotest/nvim-nio" },
     -- stylua: ignore
     keys = {{
         "<leader>du",
@@ -16,20 +28,21 @@ return {{
         desc = "Eval",
         mode = {"n", "v"}
     }},
-    opts = {},
+    opts = { floating = { border = "rounded" } },
     config = function(_, opts)
-        local dap = require("dap")
-        local dapui = require("dapui")
-        dapui.setup(opts)
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-            dapui.open({})
-        end
-        -- TODO: Removed since conflicts with tests and is annoying
-        -- dap.listeners.before.event_terminated["dapui_config"] = function()
-        --     dapui.close({})
-        -- end
-        -- dap.listeners.before.event_exited["dapui_config"] = function()
-        --     dapui.close({})
-        -- end
-    end
-}}
+      local dap = require("dap")
+      local dapui = require("dapui")
+      dapui.setup(opts)
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open({})
+      end
+      -- TODO: Removed since conflicts with tests and is annoying
+      -- dap.listeners.before.event_terminated["dapui_config"] = function()
+      --     dapui.close({})
+      -- end
+      -- dap.listeners.before.event_exited["dapui_config"] = function()
+      --     dapui.close({})
+      -- end
+    end,
+  },
+}
