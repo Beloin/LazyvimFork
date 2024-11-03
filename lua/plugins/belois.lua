@@ -196,4 +196,11 @@ return {
   },
 
   { "akinsho/git-conflict.nvim", version = "*", config = true },
+
+  {
+    "tiagovla/scope.nvim",
+    config = function()
+      require("scope").setup({})
+    end,
+  },
 }
