@@ -43,10 +43,16 @@ return {
     end,
   },
 
+  -- {
+  --   "petertriho/nvim-scrollbar",
+  --   config = function()
+  --     require("scrollbar").setup()
+  --   end,
+  -- },
+
   {
-    "petertriho/nvim-scrollbar",
+    "dstein64/nvim-scrollview",
     config = function()
-      require("scrollbar").setup()
     end,
   },
 
