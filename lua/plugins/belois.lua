@@ -52,8 +52,7 @@ return {
 
   {
     "dstein64/nvim-scrollview",
-    config = function()
-    end,
+    config = function() end,
   },
 
   {
@@ -129,16 +128,6 @@ return {
     lazy = false,
   },
 
-  -- TODO: How to use only this instead of both?
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   event = "VeryLazy",
-  --   opts = {},
-  --   config = function(_, opts)
-  --     require("lsp_signature").setup(opts)
-  --   end,
-  -- },
-
   {
     "javiorfo/nvim-soil",
 
@@ -208,5 +197,28 @@ return {
     config = function()
       require("scope").setup({})
     end,
+  },
+
+  -- TODO: How to use only this instead of both?
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   event = "VeryLazy",
+  --   opts = {},
+  --   config = function(_, opts)
+  --     require("lsp_signature").setup(opts)
+  --   end,
+  -- },
+
+  -- TODO: This gives too much text
+  {
+    "ray-x/navigator.lua",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+    },
+  },
+
+  {
+    "ray-x/guihua.lua",
   },
 }
