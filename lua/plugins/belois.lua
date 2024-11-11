@@ -190,7 +190,25 @@ return {
     config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
   },
 
-  { "akinsho/git-conflict.nvim", version = "*", config = true },
+  {
+    "akinsho/git-conflict.nvim",
+    version = "*",
+    config = function()
+      require("git-conflict").setup({})
+
+      local wk = require("which-key")
+      wk.add({
+        { "<leader>gt", group = "Git Conflict" }, -- Adds a description to the "gt" group
+      })
+
+      vim.keymap.set("n", "<leader>gto", "<cmd>GitConflictChooseOurs<cr>", { desc = "Conflit: Choose Ours" })
+      vim.keymap.set("n", "<leader>gtt", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Conflit: Choose Theirs" })
+      vim.keymap.set("n", "<leader>gtb", "<cmd>GitConflictChooseBoth<cr>", { desc = "Conflit: Choose Both" })
+      vim.keymap.set("n", "<leader>gt0", "<cmd>GitConflictChooseNone<cr>", { desc = "Conflit: Choose None" })
+
+      return true
+    end,
+  },
 
   {
     "tiagovla/scope.nvim",
