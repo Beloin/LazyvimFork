@@ -198,13 +198,13 @@ return {
 
       local wk = require("which-key")
       wk.add({
-        { "<leader>gt", group = "Git Conflict" }, -- Adds a description to the "gt" group
+        { "<leader>gC", group = "Git Conflict" }, -- Adds a description to the "gt" group
       })
 
-      vim.keymap.set("n", "<leader>gto", "<cmd>GitConflictChooseOurs<cr>", { desc = "Conflit: Choose Ours" })
-      vim.keymap.set("n", "<leader>gtt", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Conflit: Choose Theirs" })
-      vim.keymap.set("n", "<leader>gtb", "<cmd>GitConflictChooseBoth<cr>", { desc = "Conflit: Choose Both" })
-      vim.keymap.set("n", "<leader>gt0", "<cmd>GitConflictChooseNone<cr>", { desc = "Conflit: Choose None" })
+      vim.keymap.set("n", "<leader>gCo", "<cmd>GitConflictChooseOurs<cr>", { desc = "Conflit: Choose Ours" })
+      vim.keymap.set("n", "<leader>gCt", "<cmd>GitConflictChooseTheirs<cr>", { desc = "Conflit: Choose Theirs" })
+      vim.keymap.set("n", "<leader>gCb", "<cmd>GitConflictChooseBoth<cr>", { desc = "Conflit: Choose Both" })
+      vim.keymap.set("n", "<leader>gC0", "<cmd>GitConflictChooseNone<cr>", { desc = "Conflit: Choose None" })
 
       return true
     end,

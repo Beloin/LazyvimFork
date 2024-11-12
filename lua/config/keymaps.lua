@@ -3,6 +3,7 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local wk = require("which-key")
 
 -- TODO: Not necessary: <leader>ss does the job
 -- map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
@@ -13,12 +14,6 @@ map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
 
 -- LSP Mappings
-local function opts(desc)
-    return {
-        buffer = bufnr,
-        desc = desc
-    }
-end
 
 -- TODO: Removed since <C-k> does the jeob
 -- map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
@@ -57,6 +52,10 @@ map({"i","n"}, "<F11>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
 
 
 -- Refactor maps
+wk.add({
+  { "<leader>r", group = "Prime Refactor" },
+})
+
 map("x", "<leader>re", ":Refactor extract ")
 map("x", "<leader>rf", ":Refactor extract_to_file ")
 
