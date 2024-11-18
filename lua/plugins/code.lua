@@ -89,4 +89,15 @@ return {
       require("refactoring").setup()
     end,
   },
+
+  {
+    "eatgrass/maven.nvim",
+    cmd = { "Maven", "MavenExec" },
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("maven").setup({
+        executable = "./mvnw",
+      })
+    end,
+  },
 }
