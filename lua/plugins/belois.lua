@@ -1,15 +1,6 @@
 -- Most of cool pluguins are here: https://github.com/rockerBOO/awesome-neovim
 
 return {
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    config = true,
-    event = "VeryLazy",
-    keys = {
-      { "<M-h>", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
-    },
-  },
 
   {
     "karb94/neoscroll.nvim",
