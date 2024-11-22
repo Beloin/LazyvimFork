@@ -10,8 +10,7 @@ local wk = require("which-key")
 -- map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
-
-map({ "i", "n" }, "<C-n>", "<cmd>Neotree<cr>", { desc = "Open Neotree" })
+-- map({ "i", "n" }, "<M-h>", "<C-/>", { desc = "Toggle terminal" })
 
 -- LSP Mappings
 

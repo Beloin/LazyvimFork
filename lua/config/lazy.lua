@@ -35,6 +35,10 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.go" },
     { import = "lazyvim.plugins.extras.lang.elixir" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.sql" },
+
+    -- Trash
+    { import = "lazyvim.plugins.extras.lang.typescript" },
 
     -- import/override with your plugins
     { import = "plugins" },
