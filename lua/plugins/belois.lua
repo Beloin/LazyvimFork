@@ -273,4 +273,9 @@ return {
       legacy_computing_symbols_support = false,
     },
   },
+
+  {
+    "fabridamicelli/cronex.nvim",
+    opts = {},
+  },
 }
