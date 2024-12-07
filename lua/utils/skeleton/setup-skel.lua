@@ -14,6 +14,8 @@ M.setup = function()
       ["*.go"] = "go.skel",
       ["*.cs"] = "csharp.skel",
       ["*.java"] = "java.skel",
+      ["*.html"] = "html.skel",
+      ["*.htm"] = "html.skel",
 
       -- Other's skels
       ["*CMakeLists.txt"] = "cmake.skel",
