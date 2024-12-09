@@ -18,3 +18,13 @@ autocmd("VimEnter", {
   nested = true,
   -- once = true
 })
+
+autocmd("BufEnter", {
+  callback = function()
+    local gs = require('gitsigns')
+    gs.toggle_current_line_blame(true)
+  end,
+  nested = true,
+  once = true
+})
+
