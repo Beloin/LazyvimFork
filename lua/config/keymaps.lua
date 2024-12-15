@@ -5,40 +5,11 @@
 local map = vim.keymap.set
 local wk = require("which-key")
 
--- TODO: Not necessary: <leader>ss does the job
--- map("n", "gs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
--- map("n", "<leadler>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { desc = "Telescope find Symbol" })
-
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
--- map({ "i", "n" }, "<M-h>", "<C-/>", { desc = "Toggle terminal" })
 
--- LSP Mappings
-
--- TODO: Removed since <C-k> does the jeob
--- map("i", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
--- map("n", "<C-p>", vim.lsp.buf.signature_help, opts "Lsp Show signature help")
-
-local neoscroll = require('neoscroll')
-neoscroll.setup({
-  -- Default easing function used in any animation where
-  -- the `easing` argument has not been explicitly supplied
-  easing = "quadratic"
-})
-local keymap = {
-  -- Use the "sine" easing function
-  ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250; easing = 'sine' }) end;
-  ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250; easing = 'sine' }) end;
-  -- Use the "circular" easing function
-  ["<C-b>"] = function() neoscroll.ctrl_b({ duration = 450; easing = 'circular' }) end;
-  ["<C-f>"] = function() neoscroll.ctrl_f({ duration = 450; easing = 'circular' }) end;
-  -- When no value is passed the `easing` option supplied in `setup()` is used
-  ["<C-y>"] = function() neoscroll.scroll(-0.1, { move_cursor=false; duration = 100 }) end;
-  ["<C-e>"] = function() neoscroll.scroll(0.1, { move_cursor=false; duration = 100 }) end;
-}
-local modes = { 'n', 'v', 'x' }
-for key, func in pairs(keymap) do
-    vim.keymap.set(modes, key, func)
-end
+-- Re-maping default per-line up and down
+map("n", "<C-e>", "5<C-e>")
+map("n", "<C-y>", "5<C-y>")
 
 local dap = require("dap")
 map({ "i", "n" }, "<F7>", "<cmd>DapStepInto<CR>", { desc = "Step Into" })
