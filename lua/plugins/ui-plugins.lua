@@ -40,12 +40,12 @@ return {
     end,
   },
 
-  {
-    "tiagovla/scope.nvim",
-    config = function()
-      require("scope").setup({})
-    end,
-  },
+  -- {
+  --   "tiagovla/scope.nvim",
+  --   config = function()
+  --     require("scope").setup({})
+  --   end,
+  -- },
 
   -- TODO: How to use only this instead of both?
   -- {

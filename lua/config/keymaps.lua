@@ -12,6 +12,7 @@ map("n", "<C-e>", "5<C-e>")
 map("n", "<C-y>", "5<C-y>")
 
 local dap = require("dap")
+map({ "i", "n" }, "<F5>", "<cmd>DapContinue<CR>", { desc = "Continue" })
 map({ "i", "n" }, "<F7>", "<cmd>DapStepInto<CR>", { desc = "Step Into" })
 map({ "i", "n" }, "<F8>", "<cmd>DapStepOver<CR>", { desc = "Step Over" })
 map({ "i", "n" }, "<F9>", "<cmd>DapStepOut<CR>", { desc = "Step Out" })
