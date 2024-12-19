@@ -161,4 +161,8 @@ return {
     "fabridamicelli/cronex.nvim",
     opts = {},
   },
+
+  -- {
+  --   "rest-nvim/rest.nvim",
+  -- },
 }

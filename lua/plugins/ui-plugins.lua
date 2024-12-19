@@ -112,4 +112,18 @@ return {
       legacy_computing_symbols_support = false,
     },
   },
+
+  {
+    "fei6409/log-highlight.nvim",
+    config = function()
+      require("log-highlight").setup({})
+    end,
+  },
+
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
 }
