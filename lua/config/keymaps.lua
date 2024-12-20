@@ -19,23 +19,19 @@ map({ "i", "n" }, "<F9>", "<cmd>DapStepOut<CR>", { desc = "Step Out" })
 map({ "i", "n" }, "<F10>", function()
   dap.restart()
 end, { desc = "Restart DAP Session" })
-map({"i","n"}, "<F11>", "<cmd>DapTerminate<CR>", { desc="Terminate DAP" })
+map({ "i", "n" }, "<F11>", "<cmd>DapTerminate<CR>", { desc = "Terminate DAP" })
 
-
--- Refactor maps
+-- Prime Refactor maps
 wk.add({
   { "<leader>r", group = "Prime Refactor" },
 })
 
 map("x", "<leader>re", ":Refactor extract ")
 map("x", "<leader>rf", ":Refactor extract_to_file ")
-
 map("x", "<leader>rv", ":Refactor extract_var ")
-
 map({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
-
-map( "n", "<leader>rI", ":Refactor inline_func")
-
+map("n", "<leader>rI", ":Refactor inline_func")
 map("n", "<leader>rb", ":Refactor extract_block")
 map("n", "<leader>rbf", ":Refactor extract_block_to_file")
 
+map("n", "<leader>we", "<cmd>Neotree<cr>", { desc = "Neotree from Here" })
