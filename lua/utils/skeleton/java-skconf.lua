@@ -39,7 +39,7 @@ local function package(config)
   local package_parts = {}
   for _, dir in ipairs(reversed) do
     if dir ~= java_dir then
-      table.insert(package_parts, string.lower(dir))
+      table.insert(package_parts, dir)
     end
   end
 
