@@ -35,6 +35,10 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
   - `google-java-format`
 
 
+## Flutter
+
+Basically using flutter-tools.nvim and installing TS with `TSInstall dart`.
+
 # DAP
 
 Can have more informations [here](https://github.com/NormalNvim/NormalNvim/blob/a1c48324fe8e410118a546514259fb5fdd9809e4/lua/plugins/4-dev.lua#L337).

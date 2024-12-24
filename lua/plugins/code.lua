@@ -113,6 +113,13 @@ return {
         debugger = {
           enabled = true,
         },
+        decorations = {
+          statusline = {
+            app_version = false,
+            device = true,
+            project_config = false,
+          },
+        },
       })
     end,
   },
