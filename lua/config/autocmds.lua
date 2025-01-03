@@ -38,15 +38,12 @@ vim.api.nvim_create_user_command("FilteredBuffer", function(opts)
     return
   end
 
-  -- Create a new buffer for the filtered content
   local output_buf = vim.api.nvim_create_buf(false, true)
   vim.cmd("vsplit")
   vim.api.nvim_set_current_buf(output_buf)
 
-  -- Initial filtering
   fb.filter_lines(input_buf, output_buf, regex)
 
-  -- Set up an autocommand to update the filtered buffer on text changes
   vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufWritePost" }, {
     buffer = input_buf,
     callback = function()
@@ -56,6 +53,6 @@ vim.api.nvim_create_user_command("FilteredBuffer", function(opts)
     end,
   })
 end, {
-  nargs = 1, -- Command requires exactly one argument (the regex)
+  nargs = 1,
   desc = "Create a live filtered buffer using the provided regex to filter lines",
 })
