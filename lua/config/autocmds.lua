@@ -26,10 +26,41 @@ autocmd("VimEnter", {
 
 autocmd("BufEnter", {
   callback = function()
-    local gs = require('gitsigns')
+    local gs = require("gitsigns")
     gs.toggle_current_line_blame(true)
   end,
   nested = true,
-  once = true
+  once = true,
 })
 
+-- Command to create a filtered buffer with regex filtering
+vim.api.nvim_create_user_command("FilteredBuffer", function(opts)
+  local fb = require("external.filtered-buffer")
+  local input_buf = vim.api.nvim_get_current_buf()
+  local regex = opts.args
+  if regex == "" then
+    vim.notify("Please provide a valid regex as an argument.", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Create a new buffer for the filtered content
+  local output_buf = vim.api.nvim_create_buf(false, true)
+  vim.cmd("vsplit")
+  vim.api.nvim_set_current_buf(output_buf)
+
+  -- Initial filtering
+  fb.filter_lines(input_buf, output_buf, regex)
+
+  -- Set up an autocommand to update the filtered buffer on text changes
+  vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "BufWritePost" }, {
+    buffer = input_buf,
+    callback = function()
+      if vim.api.nvim_buf_is_valid(output_buf) then
+        fb.filter_lines(input_buf, output_buf, regex)
+      end
+    end,
+  })
+end, {
+  nargs = 1, -- Command requires exactly one argument (the regex)
+  desc = "Create a live filtered buffer using the provided regex to filter lines",
+})
