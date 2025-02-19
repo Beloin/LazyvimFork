@@ -28,12 +28,7 @@ If still has some things to match, see [this link](https://igorlfs.github.io/neo
 
 ## Java
 
-1. Default `Lazy.vim` Java extra
-2. Install maven 
-3. In Mason:
-  - `jdtls` -- Already should be installed by lazyvim
-  - `google-java-format`
-
+1. Using `java.nvim` as Java dependecy, way better
 
 ## Flutter
 

@@ -241,4 +241,12 @@ return {
   {
     "dart-lang/dart-vim-plugin",
   },
+
+  {
+    "nvim-java/nvim-java",
+    config = function()
+      require("java").setup()
+      require("lspconfig").jdtls.setup({})
+    end,
+  },
 }

@@ -36,4 +36,7 @@ map("n", "<leader>rbf", ":Refactor extract_block_to_file")
 
 map("n", "<leader>we", "<cmd>Neotree<cr>", { desc = "Neotree from Here" })
 
-map({"n", "x"}, "d", "\"_d")
+map({ "n", "x" }, "d", '"_d')
+
+map({ "n" }, "<Leader><Tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
