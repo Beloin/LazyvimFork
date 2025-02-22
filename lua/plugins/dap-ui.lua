@@ -25,6 +25,7 @@ return {
       dapui.setup(opts)
       dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open({})
+        vim.cmd("Neotree close")
       end
       -- TODO: Removed since conflicts with tests and is annoying
       -- dap.listeners.before.event_terminated["dapui_config"] = function()
