@@ -2,22 +2,27 @@
 
 return {
 
-  -- {
-  --   "petertriho/nvim-scrollbar",
-  --   config = function()
-  --     require("scrollbar").setup()
-  --   end,
-  -- },
-
   {
-    "dstein64/nvim-scrollview",
-    config = function() end,
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
   },
+
+  -- {
+  --   "dstein64/nvim-scrollview",
+  --   config = function() end,
+  -- },
 
   {
     "rmagatti/goto-preview",
     event = "BufEnter",
-    config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
+    config = function()
+      require("goto-preview").setup({
+        default_mappings = true,
+      })
+    end,
   },
 
   {
