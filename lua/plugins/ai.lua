@@ -59,6 +59,12 @@ return {
         endpoint = "http://localhost:11434",
         model = "qwen2.5-coder:14b",
       },
+      -- Too slow to use ollama provider, maybe create another faster AI to use as a provider
+      -- ollama_fast = {
+      --   endpoint = "",
+      --   model = ""
+      -- }
+      -- auto_suggestions_provider = "ollama",
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
