@@ -40,3 +40,11 @@ map({ "n", "x" }, "d", '"_d')
 
 map({ "n" }, "<Leader><Tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
+
+-- wk.add({
+--   { "<leader>a", group = "AI Integrations" },
+-- })
+--
+-- map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
+-- map({ "n" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+
