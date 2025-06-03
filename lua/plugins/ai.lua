@@ -55,9 +55,11 @@ return {
       -- add any opts here
       -- for example
       provider = "ollama",
-      ollama = {
-        endpoint = "http://localhost:11434",
-        model = "qwen2.5-coder:14b",
+      providers = {
+        ollama = {
+          endpoint = "http://100.83.175.60:11434",
+          model = "codellama:13b",
+        },
       },
       -- Too slow to use ollama provider, maybe create another faster AI to use as a provider
       -- ollama_fast = {
