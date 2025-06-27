@@ -58,3 +58,6 @@ end, {
 })
 
 
+-- Removing Animations
+vim.g.snacks_animate = false
+vim.opt.laststatus = 3
