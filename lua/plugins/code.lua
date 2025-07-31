@@ -242,13 +242,14 @@ return {
     "dart-lang/dart-vim-plugin",
   },
 
-  {
-    "nvim-java/nvim-java",
-    config = function()
-      require("java").setup()
-      require("lspconfig").jdtls.setup({})
-    end,
-  },
+  -- For now using LazyExtras java lang
+  -- {
+  --   "nvim-java/nvim-java",
+  --   config = function()
+  --     require("java").setup()
+  --     require("lspconfig").jdtls.setup({})
+  --   end,
+  -- },
 
   {
     "rcasia/neotest-java",
