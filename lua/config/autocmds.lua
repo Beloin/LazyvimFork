@@ -62,7 +62,10 @@ end, {
   desc = "Create a live filtered buffer using the provided regex to filter lines",
 })
 
-
 -- Removing Animations
 vim.g.snacks_animate = false
 vim.opt.laststatus = 3
+
+-- Java configurations
+local java_setup = require("external.java-custom-setup")
+java_setup.setup()
