@@ -1,36 +1,56 @@
 return {
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       adapters = {
+  --         ollama = function()
+  --           return require("codecompanion.adapters").extend("ollama", {
+  --             env = {
+  --               url = "http://100.83.175.60:11434",
+  --               api_key = "OLLAMA_API_KEY",
+  --               model = "codellama:13b",
+  --             },
+  --             headers = {
+  --               ["Content-Type"] = "application/json",
+  --               ["Authorization"] = "Bearer ${api_key}",
+  --             },
+  --             parameters = {
+  --               sync = true,
+  --             },
+  --           })
+  --         end,
+  --       },
+  --       strategies = {
+  --         chat = { adapter = "ollama" },
+  --         inline = { adapter = "ollama" },
+  --         agent = { adapter = "ollama" },
+  --       },
+  --     })
+  --   end,
+  -- },
+
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+    "NickvanDyke/opencode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    ---@type opencode.Config
+    opts = {
+      -- Your configuration, if any
     },
-    config = function()
-      require("codecompanion").setup({
-        adapters = {
-          ollama = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              env = {
-                url = "http://localhost:11434",
-                api_key = "OLLAMA_API_KEY",
-                model = "codellama:13b",
-              },
-              headers = {
-                ["Content-Type"] = "application/json",
-                ["Authorization"] = "Bearer ${api_key}",
-              },
-              parameters = {
-                sync = true,
-              },
-            })
-          end,
-        },
-        strategies = {
-          chat = { adapter = "ollama" },
-          inline = { adapter = "ollama" },
-          agent = { adapter = "ollama" },
-        },
-      })
-    end,
+  -- stylua: ignore
+    keys = {
+      { '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle embedded opencode', },
+      { '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n', },
+      { '<leader>oa', function() require('opencode').ask('@selection: ') end, desc = 'Ask opencode about selection', mode = 'v', },
+      { '<leader>op', function() require('opencode').select_prompt() end, desc = 'Select prompt', mode = { 'n', 'v', }, },
+      { '<leader>on', function() require('opencode').command('session_new') end, desc = 'New session', },
+      { '<leader>oy', function() require('opencode').command('messages_copy') end, desc = 'Copy last message', },
+      { '<S-C-u>',    function() require('opencode').command('messages_half_page_up') end, desc = 'Scroll messages up', },
+      { '<S-C-d>',    function() require('opencode').command('messages_half_page_down') end, desc = 'Scroll messages down', },
+    },
   },
 }
