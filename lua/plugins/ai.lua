@@ -41,7 +41,7 @@ return {
     opts = {
       -- Your configuration, if any
     },
-  -- stylua: ignore
+    -- stylua: ignore
     keys = {
       { '<leader>ot', function() require('opencode').toggle() end, desc = 'Toggle embedded opencode', },
       { '<leader>oa', function() require('opencode').ask() end, desc = 'Ask opencode', mode = 'n', },
