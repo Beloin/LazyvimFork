@@ -13,6 +13,12 @@
         },
         "llama3.1:8b": {
           "name": "llama3 8b"
+        },
+        "devstral:24b": {
+          "name": "devstral"
+        },
+        "gpt-oss:20b": {
+          "name": "gpt-oss"
         }
       }
     }
