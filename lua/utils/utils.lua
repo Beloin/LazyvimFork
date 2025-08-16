@@ -12,6 +12,24 @@ local function mysplit(inputstr, sep)
   return t
 end
 
+function M.run_sh(command)
+	local handle = io.popen(command)
+	if not handle then
+		return false, nil
+	end
+
+	local result = handle:read("*a")
+	handle:close()
+
+	return true, result
+end
+
+function M.tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
 M.str_split = mysplit
 
 return M

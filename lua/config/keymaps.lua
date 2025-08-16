@@ -21,6 +21,7 @@ map({ "i", "n" }, "<F10>", function()
 end, { desc = "Restart DAP Session" })
 map({ "i", "n" }, "<F11>", "<cmd>DapTerminate<CR>", { desc = "Terminate DAP" })
 
+--#region Refactor
 -- Prime Refactor maps
 wk.add({
   { "<leader>r", group = "Prime Refactor" },
@@ -33,6 +34,7 @@ map({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
 map("n", "<leader>rI", ":Refactor inline_func")
 map("n", "<leader>rb", ":Refactor extract_block")
 map("n", "<leader>rbf", ":Refactor extract_block_to_file")
+--#endregion
 
 map("n", "<leader>we", "<cmd>Neotree<cr>", { desc = "Neotree from Here" })
 
@@ -41,10 +43,33 @@ map({ "n", "x" }, "d", '"_d')
 map({ "n" }, "<Leader><Tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
 
--- wk.add({
---   { "<leader>a", group = "AI Integrations" },
--- })
---
--- map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
--- map({ "n" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+--#region AI
+wk.add({
+  { "<leader>a", group = "AI Integrations" },
+})
+map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
+map({ "n" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+--#endregion
 
+--#region Finder
+-- Command to look for current main file
+vim.api.nvim_create_user_command("GotoMain", function(opts)
+  local mainFinder = require("utils.main_finder.main_finder")
+  local found, main = mainFinder.getMain()
+  if found then
+    vim.cmd("edit " .. main)
+  else
+    print("Fuck off")
+  end
+end, {
+  desc = "Look for main file",
+})
+
+map({ "n" }, "gm", "<cmd>GotoMain<cr>", { desc = "Go to main file" })
+
+--#endregion
+
+vim.keymap.set("n", "<leader>df", function()
+  local widgets = require("dap.ui.widgets")
+  widgets.centered_float(widgets.frames)
+end, { desc = "Open Floating" })
