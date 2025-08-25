@@ -13,7 +13,8 @@ return {
               env = {
                 url = "http://100.83.175.60:11434",
                 api_key = "OLLAMA_API_KEY",
-                model = "gpt-oss:20b",
+                -- model = "gpt-oss:20b",
+                model = "qwen2.5-coder:14:b",
               },
               headers = {
                 ["Content-Type"] = "application/json",

@@ -73,3 +73,17 @@ vim.keymap.set("n", "<leader>df", function()
   local widgets = require("dap.ui.widgets")
   widgets.centered_float(widgets.frames)
 end, { desc = "Open Floating" })
+
+--#region Hurl Keymaps
+
+wk.add({
+  { "<leader>h", group = "Hurl Keymaps" },
+})
+
+map({ "n" }, "<leader>hA", "<cmd>HurlRunner<CR>", { desc = "Run All requests" })
+map({ "n" }, "<leader>ha", "<cmd>HurlRunnerAt<CR>", { desc = "Run Api request" })
+map({ "n" }, "<leader>he", "<cmd>HurlRunnerToEnd<CR>", { desc = "Run Api request from current entry to end" })
+map({ "n" }, "<leader>hh", "<cmd>HurlRunnerToEntry<CR>", { desc = "Run Api request to entry" })
+map({ "v" }, "<leader>ha", ":HurlRunner<CR>", { desc = "Run Api Request" })
+
+--#endregion
