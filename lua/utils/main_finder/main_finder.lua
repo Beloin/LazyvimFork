@@ -3,9 +3,11 @@ local M = {}
 
 local langs = require("utils.langs")
 local javafd = require("utils.main_finder.java_finder")
+local gofd = require("utils.main_finder.go_finder")
 
 M.map = {}
 M.map["java"] = javafd.finder
+M.map["go"] = gofd.finder
 
 ---@param finder fun(workspace: string): boolean, string Returns the file name containing the main file
 ---@param workspace string Current workspace
