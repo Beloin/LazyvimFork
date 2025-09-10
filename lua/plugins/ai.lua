@@ -8,13 +8,24 @@ return {
     config = function()
       require("codecompanion").setup({
         adapters = {
+          deepseek = function()
+            return require("codecompanion.adapters").extend("deepseek", {
+              env = {
+                api_key = "---",
+              },
+              schema = {
+                model = {
+                  default = "deepseek-chat",
+                },
+              },
+            })
+          end,
           ollama = function()
             return require("codecompanion.adapters").extend("ollama", {
               env = {
                 url = "http://100.83.175.60:11434",
                 api_key = "OLLAMA_API_KEY",
-                -- model = "gpt-oss:20b",
-                model = "qwen2.5-coder:14:b",
+                model = "qwen2.5-coder:14b",
               },
               headers = {
                 ["Content-Type"] = "application/json",
@@ -23,13 +34,22 @@ return {
               parameters = {
                 sync = true,
               },
+              schema = {
+                model = {
+                  default = "qwen2.5-coder:14b",
+                },
+              },
             })
           end,
         },
         strategies = {
-          chat = { adapter = "ollama" },
-          inline = { adapter = "ollama" },
-          agent = { adapter = "ollama" },
+          -- chat = { adapter = "ollama" },
+          -- inline = { adapter = "ollama" },
+          -- agent = { adapter = "ollama" },
+
+          chat = { adapter = "deepseek", model = "deepseek-chat" },
+          inline = { adapter = "deepseek", model = "deepseek-chat" },
+          agent = { adapter = "deepseek", model = "deepseek-chat" },
         },
       })
     end,
