@@ -18,40 +18,40 @@ return {
     end,
   },
 
-  {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
-    end,
-  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   -- follow latest release.
+  --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp",
+  --   dependencies = { "rafamadriz/friendly-snippets" },
+  --   config = function()
+  --     require("luasnip.loaders.from_vscode").lazy_load()
+  --     require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/" })
+  --   end,
+  -- },
 
-  {
-    "madskjeldgaard/cheeky-snippets.nvim",
-    requires = {
-      "L3MON4D3/LuaSnip",
-    },
-    event = "VeryLazy",
-    config = function()
-      local cheeky = require("cheeky")
-      cheeky.setup({
-        langs = {
-          all = true,
-          lua = true,
-          cpp = true,
-          asm = true,
-          cmake = true,
-          markdown = true,
-          supercollider = true,
-        },
-      })
-    end,
-  },
+  -- {
+  --   "madskjeldgaard/cheeky-snippets.nvim",
+  --   requires = {
+  --     "L3MON4D3/LuaSnip",
+  --   },
+  --   event = "VeryLazy",
+  --   config = function()
+  --     local cheeky = require("cheeky")
+  --     cheeky.setup({
+  --       langs = {
+  --         all = true,
+  --         lua = true,
+  --         cpp = true,
+  --         asm = true,
+  --         cmake = true,
+  --         markdown = true,
+  --         supercollider = true,
+  --       },
+  --     })
+  --   end,
+  -- },
 
   -- C++ code generator - Need to have LSP configured
   {
@@ -339,105 +339,45 @@ return {
       end, { noremap = true, desc = "Launch lua server in current neovim instance" })
     end,
   },
-
   {
-    "jellydn/hurl.nvim",
+    "oysandvik94/curl.nvim",
+    cmd = { "CurlOpen" },
     dependencies = {
-      "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      -- Optional, for markdown rendering with render-markdown.nvim
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown" },
-        },
-        ft = { "markdown" },
-      },
     },
-    ft = "hurl",
-    opts = {
-      -- Show debugging info
-      debug = false,
-      -- Show notification on run
-      show_notification = false,
-      -- Show response in popup or split
-      mode = "split",
-      -- Default formatter
-      formatters = {
-        json = { "jq" }, -- Make sure you have install jq in your system, e.g: brew install jq
-        html = {
-          "prettier", -- Make sure you have install prettier in your system, e.g: npm install -g prettier
-          "--parser",
-          "html",
-        },
-        xml = {
-          "tidy", -- Make sure you have installed tidy in your system, e.g: brew install tidy-html5
-          "-xml",
-          "-i",
-          "-q",
-        },
-      },
-      -- Default mappings for the response popup or split views
-      mappings = {
-        close = "q", -- Close the response popup or split view
-        next_panel = "<C-n>", -- Move to the next response popup window
-        prev_panel = "<C-p>", -- Move to the previous response popup window
-      },
-    },
-    keys = {
-      -- Run API request
-      { "<leader>A", "<cmd>HurlRunner<CR>", desc = "Run All requests" },
-      { "<leader>a", "<cmd>HurlRunnerAt<CR>", desc = "Run Api request" },
-      { "<leader>te", "<cmd>HurlRunnerToEntry<CR>", desc = "Run Api request to entry" },
-      { "<leader>tE", "<cmd>HurlRunnerToEnd<CR>", desc = "Run Api request from current entry to end" },
-      { "<leader>tm", "<cmd>HurlToggleMode<CR>", desc = "Hurl Toggle Mode" },
-      { "<leader>tv", "<cmd>HurlVerbose<CR>", desc = "Run Api in verbose mode" },
-      { "<leader>tV", "<cmd>HurlVeryVerbose<CR>", desc = "Run Api in very verbose mode" },
-      -- Run Hurl request in visual mode
-      { "<leader>h", ":HurlRunner<CR>", desc = "Hurl Runner", mode = "v" },
-    },
+    config = true,
   },
 
   {
-    'abecodes/tabout.nvim',
+    "abecodes/tabout.nvim",
     lazy = false,
     config = function()
-      require('tabout').setup {
-        tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
-        backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+      require("tabout").setup({
+        tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
+        backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
         act_as_tab = true, -- shift content if tab out is not possible
         act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-        default_tab = '<C-t>', -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-        default_shift_tab = '<C-d>', -- reverse shift default action,
+        default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
+        default_shift_tab = "<C-d>", -- reverse shift default action,
         enable_backwards = true, -- well ...
         completion = false, -- if the tabkey is used in a completion pum
         tabouts = {
           { open = "'", close = "'" },
           { open = '"', close = '"' },
-          { open = '`', close = '`' },
-          { open = '(', close = ')' },
-          { open = '[', close = ']' },
-          { open = '{', close = '}' }
+          { open = "`", close = "`" },
+          { open = "(", close = ")" },
+          { open = "[", close = "]" },
+          { open = "{", close = "}" },
         },
         ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-        exclude = {} -- tabout will ignore these filetypes
-      }
+        exclude = {}, -- tabout will ignore these filetypes
+      })
     end,
     dependencies = { -- These are optional
       "nvim-treesitter/nvim-treesitter",
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/nvim-cmp"
     },
-    opt = true,  -- Set this to true if the plugin is optional
-    event = 'InsertCharPre', -- Set the event to 'InsertCharPre' for better compatibility
+    opt = true, -- Set this to true if the plugin is optional
+    event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
     priority = 1000,
-  },
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      -- Disable default tab keybinding in LuaSnip
-      return {}
-    end,
   },
 }

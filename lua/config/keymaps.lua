@@ -44,11 +44,12 @@ map({ "n" }, "<Leader><Tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
 
 --#region AI
-wk.add({
-  { "<leader>a", group = "AI Integrations" },
-})
-map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
-map({ "n" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+
+map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
+map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
+map({ "n" }, "<leader>aml", "<cmd>Minuet lsp enable_auto_trigger<cr>", { desc = "Minuet lsp auto_trigger" })
+map({ "n" }, "<leader>amL", "<cmd>Minuet lsp disable_auto_trigger<cr>", { desc = "Minuet lsp disable auto_trigger" })
+
 --#endregion
 
 --#region Finder
@@ -74,16 +75,38 @@ vim.keymap.set("n", "<leader>df", function()
   widgets.centered_float(widgets.frames)
 end, { desc = "Open Floating" })
 
---#region Hurl Keymaps
+--#region Curl Keymaps
 
 wk.add({
-  { "<leader>h", group = "Hurl Keymaps" },
+  { "<leader>h", group = "Curl Keymaps" },
 })
 
-map({ "n" }, "<leader>hA", "<cmd>HurlRunner<CR>", { desc = "Run All requests" })
-map({ "n" }, "<leader>ha", "<cmd>HurlRunnerAt<CR>", { desc = "Run Api request" })
-map({ "n" }, "<leader>he", "<cmd>HurlRunnerToEnd<CR>", { desc = "Run Api request from current entry to end" })
-map({ "n" }, "<leader>hh", "<cmd>HurlRunnerToEntry<CR>", { desc = "Run Api request to entry" })
-map({ "v" }, "<leader>ha", ":HurlRunner<CR>", { desc = "Run Api Request" })
+local curl = require("curl")
+curl.setup({})
+
+vim.keymap.set("n", "<leader>hc", function()
+  curl.open_curl_tab()
+end, { desc = "Open a curl tab scoped to the current working directory" })
+
+vim.keymap.set("n", "<leader>ho", function()
+  curl.open_global_tab()
+end, { desc = "Open a curl tab with gloabl scope" })
+
+-- These commands will prompt you for a name for your collection
+vim.keymap.set("n", "<leader>hsc", function()
+  curl.create_scoped_collection()
+end, { desc = "Create or open a collection with a name from user input" })
+
+vim.keymap.set("n", "<leader>hgc", function()
+  curl.create_global_collection()
+end, { desc = "Create or open a global collection with a name from user input" })
+
+vim.keymap.set("n", "<leader>fsc", function()
+  curl.pick_scoped_collection()
+end, { desc = "Choose a scoped collection and open it" })
+
+vim.keymap.set("n", "<leader>fgc", function()
+  curl.pick_global_collection()
+end, { desc = "Choose a global collection and open it" })
 
 --#endregion

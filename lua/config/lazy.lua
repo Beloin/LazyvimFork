@@ -30,7 +30,7 @@ require("lazy").setup({
     -- Langs
     { import = "lazyvim.plugins.extras.lang.clangd" },
     { import = "lazyvim.plugins.extras.lang.cmake" },
-    { import = "lazyvim.plugins.extras.lang.omnisharp" },
+    { import = "lazyvim.plugins.extras.lang.dotnet" },
     { import = "lazyvim.plugins.extras.lang.python" },
     -- { import = "lazyvim.plugins.extras.lang.java" },
     { import = "lazyvim.plugins.extras.lang.go" },
