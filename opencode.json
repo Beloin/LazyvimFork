@@ -8,22 +8,33 @@
         "baseURL": "http://100.83.175.60:11434/v1"
       },
       "models": {
-        "codellama:13b": {
-          "name": "Codellama"
-        },
-        "qwen2.5-code:14b": {
-          "name": "qwen2.5"
-        },
-        "qwen3:8b":{
+        "qwen3:8b": {
           "name": "qwen3:8b"
-        },
-        "llama2:7b": {
-          "name": "llama2 7bi"
         },
         "llama3.1:8b": {
           "name": "llama3 8b"
+        },
+        "gpt-oss:20b": {
+          "name": "GPT OSS 20b"
+        }
+      }
+    },
+    "deepseek": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DeepSeek",
+      "options": {
+        "baseURL": "https://api.deepseek.com/v1",
+        "apiKey": ""
+      },
+      "models": {
+        "deepseek-chat": {
+          "name": "DeepSeek Chat Model"
+        },
+        "deepseek-reasoner": {
+          "name": "DeepSeek Reasoning Model"
         }
       }
     }
-  }
+  },
+  "model": "deepseek/deepseek-chat",
 }
