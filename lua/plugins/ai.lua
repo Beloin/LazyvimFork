@@ -15,7 +15,7 @@ return {
       -- add any opts here
       -- this file can contain specific instructions for your project
       instructions_file = "avante.md",
-      -- auto_suggestions_provider = "deepseek_fast",
+      auto_suggestions_provider = "ollama",
       provider = "deepseek",
       providers = {
         deepseek = {
@@ -23,14 +23,17 @@ return {
           api_key_name = "DEEPSEEK_API_KEY",
           endpoint = "https://api.deepseek.com",
           model = "deepseek-chat",
-          api_key = "",
+          apikey = "",
+        },
+        ollama = {
+          model = "qwen2.5-coder:7b",
+          endpoint = "http://localhost:11434",
+          is_env_set = true,
         },
         deepseek_fast = {
-          __inherited_from = "openai_fim_compatible",
-          api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "http://localhost:11435",
+          __inherited_from = "openai",
+          endpoint = "http://localhost:11434",
           model = "deepseek-coder:1.3b",
-          api_key = "",
         },
       },
     },

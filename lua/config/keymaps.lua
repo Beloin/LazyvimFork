@@ -45,6 +45,9 @@ map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
 
 --#region AI
 
+wk.add({
+  { "<leader>am", group = "Minuet" },
+})
 map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
 map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
 map({ "n" }, "<leader>aml", "<cmd>Minuet lsp enable_auto_trigger<cr>", { desc = "Minuet lsp auto_trigger" })
