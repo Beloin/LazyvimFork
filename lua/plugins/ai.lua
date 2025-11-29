@@ -1,6 +1,6 @@
 return {
 
-  -- Avante - Deprecated in order to use 
+  -- Avante - Use it as a tool, opencode is more an agent
   {
     "yetone/avante.nvim",
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -106,7 +106,7 @@ return {
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 3024,
+        context_window = 4024,
         provider_options = {
           openai_fim_compatible = {
             -- For Windows users, TERM may not be present in environment variables.
@@ -114,9 +114,9 @@ return {
             api_key = "TERM",
             name = "Ollama",
             end_point = "http://localhost:11434/v1/completions",
-            model = "qwen2.5-coder:7b",
+            model = "qwen2.5-coder:14b",
             optional = {
-              max_tokens = 56,
+              max_tokens = 100,
               top_p = 0.9,
             },
           },
