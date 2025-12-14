@@ -53,6 +53,14 @@ map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet bli
 map({ "n" }, "<leader>aml", "<cmd>Minuet lsp enable_auto_trigger<cr>", { desc = "Minuet lsp auto_trigger" })
 map({ "n" }, "<leader>amL", "<cmd>Minuet lsp disable_auto_trigger<cr>", { desc = "Minuet lsp disable auto_trigger" })
 
+wk.add({
+  { "<leader>a", group = "AI Integrations" },
+})
+
+map({ "n", "v" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
+map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+map({ "n", "v" }, "<Leader>ai", ":CodeCompanion ", { desc = "Code Companion Inline" })
+
 --#endregion
 
 --#region Finder
