@@ -80,11 +80,15 @@ return {
   --   },
   -- },
 
+  -- Code Companion works quite well as a Sidekick
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "MeanderingProgrammer/render-markdown.nvim",
+      "OXY2DEV/markview.nvim",
+      "nvim-mini/mini.diff",
     },
     config = function()
       require("codecompanion").setup({
@@ -126,6 +130,34 @@ return {
           inline = { adapter = "deepseek" },
           agent = { adapter = "deepseek" },
         },
+        extensions = {},
+      })
+    end,
+  },
+
+  -- UI for CodeCompanion
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    opts = {
+      preview = {
+        filetypes = { "markdown", "codecompanion" },
+        ignore_buftypes = {},
+      },
+    },
+  },
+  {
+    "nvim-mini/mini.diff",
+    config = function()
+      local diff = require("mini.diff")
+      diff.setup({
+        -- Disabled by default
+        source = diff.gen_source.none(),
       })
     end,
   },
