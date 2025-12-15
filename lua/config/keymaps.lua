@@ -57,9 +57,10 @@ wk.add({
   { "<leader>a", group = "AI Integrations" },
 })
 
-map({ "n", "v" }, "<Leader>ac", "<cmd>CodeCompanionChat<cr>", { desc = "Code Companion Chat" })
+map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
+map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
 map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
-map({ "n", "v" }, "<Leader>ai", ":CodeCompanion ", { desc = "Code Companion Inline" })
+map({ "n", "v" }, "<Leader>ai", ":CodeCompanion #{buffer} ", { desc = "Code Companion Inline" })
 
 --#endregion
 
