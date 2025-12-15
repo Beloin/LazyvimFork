@@ -62,6 +62,9 @@ map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Comp
 map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
 map({ "n", "v" }, "<Leader>ai", ":CodeCompanion #{buffer} ", { desc = "Code Companion Inline" })
 
+map({ "v" }, "<Leader>af", "<cmd>CodeCompanion /fix<cr>", { desc = "Code Companion Fix" })
+map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
+
 --#endregion
 
 --#region Finder
