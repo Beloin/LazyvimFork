@@ -46,16 +46,17 @@ map({ "n" }, "<Leader><Tab>p", "<cmd>tabprevious<cr>", { desc = "Prev Tab" })
 --#region AI
 
 wk.add({
-  { "<leader>am", group = "Minuet" },
-})
-map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
-map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
-map({ "n" }, "<leader>aml", "<cmd>Minuet lsp enable_auto_trigger<cr>", { desc = "Minuet lsp auto_trigger" })
-map({ "n" }, "<leader>amL", "<cmd>Minuet lsp disable_auto_trigger<cr>", { desc = "Minuet lsp disable auto_trigger" })
-
-wk.add({
   { "<leader>a", group = "AI Integrations" },
 })
+
+wk.add({
+  { "<leader>am", group = "Minuet" },
+})
+
+map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
+map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
+map({ "n" }, "<leader>ama", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
+map({ "n" }, "<leader>amd", "<cmd>Minuet lsp detach<cr>", { desc = "Minuet lsp detach" })
 
 map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
 map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })

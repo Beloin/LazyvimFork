@@ -69,3 +69,7 @@ vim.opt.laststatus = 3
 -- Java configurations
 local java_setup = require("external.java-custom-setup")
 java_setup.setup()
+
+
+-- Configure minuet
+
