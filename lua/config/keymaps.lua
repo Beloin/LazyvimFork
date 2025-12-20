@@ -54,12 +54,20 @@ wk.add({
 })
 
 map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
+map({ "n" }, "<leader>ame", "<cmd>Minuet virtualtext enable<cr>", { desc = "Minuet enable virtualtext" })
 map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
 map({ "n" }, "<leader>ama", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
 map({ "n" }, "<leader>amd", "<cmd>Minuet lsp detach<cr>", { desc = "Minuet lsp detach" })
 
 map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
 map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
+map(
+  { "n", "v" },
+  "<Leader>ag",
+  '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner} Answer with only "Ok!" and wait for my next prompts<cr>',
+  { desc = "Code Companion Agent" }
+)
+
 map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
 map({ "n", "v" }, "<Leader>ai", ":CodeCompanion #{buffer} ", { desc = "Code Companion Inline" })
 
