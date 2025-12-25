@@ -53,7 +53,7 @@ wk.add({
   { "<leader>am", group = "Minuet" },
 })
 
-map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet enable virtualtext" })
+map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet toggle virtualtext" })
 map({ "n" }, "<leader>ame", "<cmd>Minuet virtualtext enable<cr>", { desc = "Minuet enable virtualtext" })
 map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
 map({ "n" }, "<leader>ama", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
@@ -71,7 +71,7 @@ map(
 map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
 map({ "n", "v" }, "<Leader>ai", ":CodeCompanion #{buffer} ", { desc = "Code Companion Inline" })
 
-map({ "v" }, "<Leader>af", "<cmd>CodeCompanion /fix<cr>", { desc = "Code Companion Fix" })
+map({ "n", "v" }, "<Leader>af", "<cmd>CodeCompanion /fix #{lsp} #{buffer} @{files} <cr>", { desc = "Code Companion Fix" })
 map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
 
 --#endregion
