@@ -87,7 +87,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "MeanderingProgrammer/render-markdown.nvim",
-      "OXY2DEV/markview.nvim",
+      -- "OXY2DEV/markview.nvim",
       "nvim-mini/mini.diff",
     },
     config = function()
@@ -141,16 +141,17 @@ return {
     ft = { "markdown", "codecompanion" },
   },
 
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    opts = {
-      preview = {
-        filetypes = { "markdown", "codecompanion" },
-        ignore_buftypes = {},
-      },
-    },
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   lazy = false,
+  --   opts = {
+  --     preview = {
+  --       filetypes = { "markdown", "codecompanion" },
+  --       ignore_buftypes = {},
+  --     },
+  --   },
+  -- },
+
   {
     "nvim-mini/mini.diff",
     config = function()
@@ -199,7 +200,7 @@ return {
             end_point = "http://localhost:11434/v1/completions",
             model = "qwen2.5-coder:14b",
             optional = {
-              max_tokens = 100,
+              max_tokens = 200,
               top_p = 0.9,
             },
           },
