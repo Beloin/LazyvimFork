@@ -64,7 +64,7 @@ map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Comp
 map(
   { "n", "v" },
   "<Leader>ag",
-  '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner} Answer with only "Ok!" and wait for my next prompts<cr>',
+  '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner}, @{mcphub} Answer only with "Ok!" respecting any schema and wait for my next prompts<cr>',
   { desc = "Code Companion Agent" }
 )
 

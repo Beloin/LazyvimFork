@@ -1,5 +1,13 @@
 return {
 
+  {
+    "ravitemer/mcphub.nvim",
+    build = "npm install -g mcp-hub@latest",
+    config = function()
+      require("mcphub").setup({ port = 37373 })
+    end,
+  },
+
   -- Avante is bullshit now
   -- Avante - Use it as a tool, opencode is more an agent
   -- {
@@ -89,6 +97,8 @@ return {
       "MeanderingProgrammer/render-markdown.nvim",
       -- "OXY2DEV/markview.nvim",
       "nvim-mini/mini.diff",
+      "ravitemer/mcphub.nvim",
+      "ravitemer/codecompanion-history.nvim",
     },
     config = function()
       require("codecompanion").setup({
@@ -123,14 +133,49 @@ return {
                 },
               })
             end,
+            grok = function()
+              return require("codecompanion.adapters").extend("openai_compatible", {
+                name = "grok",
+                url = "https://api.x.ai/v1/chat/completions",
+                env = {
+                  api_key = "XAI_API_KEY",
+                },
+                schema = {
+                  model = {
+                    default = "grok-code-fast-1",
+                  },
+                  presence_penalty = {
+                    hidden = true,
+                  },
+                  frequency_penalty = {
+                    hidden = true,
+                  },
+                },
+              })
+            end,
           },
         },
         strategies = {
-          chat = { adapter = "deepseek" },
-          inline = { adapter = "deepseek" },
-          agent = { adapter = "deepseek" },
+          chat = { adapter = "grok" },
+          inline = { adapter = "grok" },
+          agent = { adapter = "grok" },
         },
-        extensions = {},
+        extensions = {
+          mcphub = {
+            callback = "mcphub.extensions.codecompanion",
+            opts = {
+              make_vars = true,
+              make_slash_commands = true,
+              show_result_in_chat = true,
+            },
+          },
+          history = {
+            enabled = true,
+            opts = {
+              dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+            },
+          },
+        },
       })
     end,
   },
@@ -141,6 +186,7 @@ return {
     ft = { "markdown", "codecompanion" },
   },
 
+  -- Only one of both can be used
   -- {
   --   "OXY2DEV/markview.nvim",
   --   lazy = false,
