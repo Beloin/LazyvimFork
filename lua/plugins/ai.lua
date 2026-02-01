@@ -102,6 +102,15 @@ return {
     },
     config = function()
       require("codecompanion").setup({
+        prompt_library = {
+          markdown = {
+            dirs = {
+              vim.fn.getcwd() .. "/.prompts",
+              vim.fn.stdpath("config") .. "/promtps"
+            },
+          },
+        },
+
         adapters = {
           http = {
             ollama = function()
@@ -236,7 +245,7 @@ return {
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 4024,
+        context_window = 2048,
         provider_options = {
           openai_fim_compatible = {
             -- For Windows users, TERM may not be present in environment variables.
@@ -244,7 +253,7 @@ return {
             api_key = "TERM",
             name = "Ollama",
             end_point = "http://localhost:11434/v1/completions",
-            model = "qwen2.5-coder:14b",
+            model = "starcoder2:7b",
             optional = {
               max_tokens = 200,
               top_p = 0.9,
