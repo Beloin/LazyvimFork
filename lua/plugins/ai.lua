@@ -43,6 +43,11 @@ return {
           model = "codegemma:7b",
           endpoint = "http://localhost:11434",
           is_env_set = true,
+          temperature = 0.1,
+          max_tokens = 2048,
+
+          -- IMPORTANT: enable FIM mode
+          use_fim = true,
         },
         deepseek_fast = {
           __inherited_from = "openai",
@@ -272,13 +277,22 @@ return {
           openai_fim_compatible = {
             -- For Windows users, TERM may not be present in environment variables.
             -- Consider using APPDATA instead.
-            api_key = "TERM",
             name = "Ollama",
             end_point = "http://localhost:11434/v1/completions",
-            model = "starcoder2:7b",
+            model = "qwen2.5-coder:3b-base",
+            -- stream = false,
+
             optional = {
               max_tokens = 200,
               top_p = 0.9,
+
+              -- FIM tuning (IMPORTANT)
+              temperature = 0.1,
+
+              -- Required for CodeGemma
+              fim = {
+                enabled = true,
+              },
             },
           },
         },
