@@ -29,3 +29,5 @@ end, {
   nargs = 0,
   desc = "Remove all floating windows. Usually good when Plugins messes up",
 })
+
+vim.opt.laststatus = 3
