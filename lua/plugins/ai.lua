@@ -58,6 +58,11 @@ return {
           api_key_name = "XAI_API_KEY",
           model = "grok-code-fast-1",
         },
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          auth_type = "api", -- Set to "max" to sign in with Claude Pro/Max subscription
+          model = "claude-haiku-4-5-20251001",
+        },
       },
     },
     -- behaviour = {
@@ -272,7 +277,7 @@ return {
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 2048,
+        context_window = 4048,
         provider_options = {
           openai_fim_compatible = {
             -- For Windows users, TERM may not be present in environment variables.
