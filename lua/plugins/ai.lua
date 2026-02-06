@@ -270,14 +270,19 @@ return {
         --   },
         -- },
 
+        throttle = 500, -- only send the request every x milliseconds, use 0 to disable throttle.
+        -- debounce the request in x milliseconds, set to 0 to disable debounce
+        debounce = 400,
+
         provider = "openai_fim_compatible",
         n_completions = 1, -- recommend for local model for resource saving
+
         -- I recommend beginning with a small context window size and incrementally
         -- expanding it, depending on your local computing power. A context window
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 4048,
+        context_window = 12000,
         provider_options = {
           openai_fim_compatible = {
             -- For Windows users, TERM may not be present in environment variables.
@@ -285,6 +290,9 @@ return {
             name = "Ollama",
             end_point = "http://localhost:11434/v1/completions",
             model = "qwen2.5-coder:3b-base",
+            -- model = "qwen2.5-coder:1.5b-base",
+            -- model = "qwen2.5-coder:7b-base",
+            -- model = "deepseek-coder-v2-lite-base",
             -- stream = false,
 
             optional = {
@@ -292,7 +300,7 @@ return {
               top_p = 0.9,
 
               -- FIM tuning (IMPORTANT)
-              temperature = 0.1,
+              -- temperature = 0.1,
 
               -- Required for CodeGemma
               fim = {
@@ -304,7 +312,7 @@ return {
 
         -- Virtualtext completion
         virtualtext = {
-          auto_trigger_ft = {},
+          auto_trigger_ft = { "go", "lua" },
           keymap = {
             -- accept whole completion
             accept = "<A-A>",
