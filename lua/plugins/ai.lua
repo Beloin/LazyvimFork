@@ -270,9 +270,9 @@ return {
         --   },
         -- },
 
-        throttle = 500, -- only send the request every x milliseconds, use 0 to disable throttle.
+        throttle = 200, -- only send the request every x milliseconds, use 0 to disable throttle.
         -- debounce the request in x milliseconds, set to 0 to disable debounce
-        debounce = 400,
+        debounce = 300,
 
         provider = "openai_fim_compatible",
         n_completions = 1, -- recommend for local model for resource saving
@@ -282,18 +282,15 @@ return {
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 12000,
+        context_window = 15000,
         provider_options = {
           openai_fim_compatible = {
-            -- For Windows users, TERM may not be present in environment variables.
-            -- Consider using APPDATA instead.
             name = "Ollama",
             end_point = "http://localhost:11434/v1/completions",
-            model = "qwen2.5-coder:3b-base",
-            -- model = "qwen2.5-coder:1.5b-base",
-            -- model = "qwen2.5-coder:7b-base",
-            -- model = "deepseek-coder-v2-lite-base",
-            -- stream = false,
+            model = "qwen2.5-coder:3b-base", -- medium end
+            -- model = "qwen2.5-coder:1.5b-base", -- low end
+            -- model = "qwen2.5-coder:7b-base", -- slower high end
+            -- model = "deepseek-coder-v2-lite-base", -- slower medium
 
             optional = {
               max_tokens = 200,
