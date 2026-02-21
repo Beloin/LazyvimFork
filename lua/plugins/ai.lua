@@ -58,10 +58,21 @@ return {
           api_key_name = "XAI_API_KEY",
           model = "grok-code-fast-1",
         },
+        openai = {
+          model = "gpt-5.1",
+        },
         claude = {
           endpoint = "https://api.anthropic.com",
           auth_type = "api", -- Set to "max" to sign in with Claude Pro/Max subscription
           model = "claude-haiku-4-5-20251001",
+        },
+      },
+      shortcuts = {
+        {
+          name = "ask",
+          description = "Ask only promtp",
+          details = "Only ask wihtout making any changes to code.",
+          prompt = "Please answer me without making any changes to code.",
         },
       },
     },
@@ -282,7 +293,7 @@ return {
         -- of 512, serves as an good starting point to estimate your computing
         -- power. Once you have a reliable estimate of your local computing power,
         -- you should adjust the context window to a larger value.
-        context_window = 15000,
+        context_window = 12000,
         provider_options = {
           openai_fim_compatible = {
             name = "Ollama",
@@ -309,7 +320,7 @@ return {
 
         -- Virtualtext completion
         virtualtext = {
-          auto_trigger_ft = { "go", "lua" },
+          auto_trigger_ft = { "go", "lua", "java", "markdown", "dart" },
           keymap = {
             -- accept whole completion
             accept = "<A-A>",

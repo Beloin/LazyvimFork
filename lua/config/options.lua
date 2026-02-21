@@ -31,3 +31,10 @@ end, {
 })
 
 vim.opt.laststatus = 3
+
+
+vim.filetype.add({
+  extension = {
+    arb = "json"
+  },
+})
