@@ -58,21 +58,26 @@ map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet bli
 map({ "n" }, "<leader>ama", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
 map({ "n" }, "<leader>amd", "<cmd>Minuet lsp detach<cr>", { desc = "Minuet lsp detach" })
 
+map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
+map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
+map({ "n" }, "<Leader>ah", "<cmd>CodeCompanionHistory<cr>", { desc = "Code Companion history" })
+map(
+  { "n", "v" },
+  "<Leader>ag",
+  '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner}, @{mcphub} Answer only with "Ok!" respecting any schema and wait for my next prompts<cr>',
+  { desc = "Code Companion Agent" }
+)
 
- map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
- map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
- map(
-   { "n", "v" },
-   "<Leader>ag",
-   '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner}, @{mcphub} Answer only with "Ok!" respecting any schema and wait for my next prompts<cr>',
-   { desc = "Code Companion Agent" }
- )
+map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+map({ "n", "v" }, "<Leader>ai", ":CodeCompanion @{files} #{lsp} #{buffer} ", { desc = "Code Companion Inline" })
 
- map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
- map({ "n", "v" }, "<Leader>ai", ":CodeCompanion #{buffer} ", { desc = "Code Companion Inline" })
-
- map({ "n", "v" }, "<Leader>af", "<cmd>CodeCompanion /fix #{lsp} #{buffer} @{files} <cr>", { desc = "Code Companion Fix" })
- map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
+map(
+  { "n", "v" },
+  "<Leader>af",
+  "<cmd>CodeCompanion /fix #{lsp} #{buffer} @{files} <cr>",
+  { desc = "Code Companion Fix" }
+)
+map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
 
 --#endregion
 
