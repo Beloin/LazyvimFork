@@ -152,7 +152,7 @@ return {
           markdown = {
             dirs = {
               vim.fn.getcwd() .. "/.prompts",
-              vim.fn.stdpath("config") .. "/promtps",
+              vim.fn.stdpath("config") .. "/prompts",
             },
           },
         },
