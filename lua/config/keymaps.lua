@@ -68,6 +68,14 @@ map(
   { desc = "Code Companion Agent" }
 )
 
+-- Models
+wk.add({
+  { "<leader>as", group = "Select Model" },
+})
+map({ "n" }, "<Leader>asx", "<cmd>CodeCompanionChat adapter=grok<cr>", { desc = "Grok" })
+map({ "n" }, "<Leader>asc", "<cmd>CodeCompanionChat adapter=anthropic<cr>", { desc = "Cláudia" })
+map({ "n" }, "<Leader>asg", "<cmd>CodeCompanionChat adapter=openai<cr>", { desc = "GPTelson" })
+
 map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
 map({ "n", "v" }, "<Leader>ai", ":CodeCompanion @{files} #{lsp} #{buffer} ", { desc = "Code Companion Inline" })
 

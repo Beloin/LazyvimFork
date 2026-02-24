@@ -143,6 +143,8 @@ return {
       "nvim-mini/mini.diff",
       "ravitemer/mcphub.nvim",
       "ravitemer/codecompanion-history.nvim",
+      "lalitmee/codecompanion-spinners.nvim",
+      "j-hui/fidget.nvim",
     },
     config = function()
       require("codecompanion").setup({
@@ -151,6 +153,15 @@ return {
             dirs = {
               vim.fn.getcwd() .. "/.prompts",
               vim.fn.stdpath("config") .. "/promtps",
+            },
+          },
+        },
+
+        display = {
+          chat = {
+            window = {
+              layout = "vertical",
+              width = 0.35,
             },
           },
         },
@@ -177,7 +188,7 @@ return {
                 },
                 schema = {
                   model = {
-                    default = "claude-haiku-4-5-20251001",
+                    default = "claude-sonnet-4-6",
                   },
                 },
               })
@@ -252,6 +263,13 @@ return {
             enabled = true,
             opts = {
               dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+            },
+          },
+          spinner = {
+            enabled = true,
+            opts = {
+              -- Your spinner configuration goes here
+              style = "cursor-relative",
             },
           },
         },
