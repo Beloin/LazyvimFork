@@ -50,42 +50,13 @@ wk.add({
 })
 
 wk.add({
-  { "<leader>am", group = "Minuet" },
+  { "<leader>aM", group = "Minuet" },
 })
-map({ "n" }, "<leader>amv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet toggle virtualtext" })
-map({ "n" }, "<leader>ame", "<cmd>Minuet virtualtext enable<cr>", { desc = "Minuet enable virtualtext" })
-map({ "n" }, "<leader>amb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
-map({ "n" }, "<leader>ama", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
-map({ "n" }, "<leader>amd", "<cmd>Minuet lsp detach<cr>", { desc = "Minuet lsp detach" })
-
-map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
-map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
-map({ "n" }, "<Leader>ah", "<cmd>CodeCompanionHistory<cr>", { desc = "Code Companion history" })
-map(
-  { "n", "v" },
-  "<Leader>ag",
-  '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner}, @{mcphub} Answer only with "Ok!" respecting any schema and wait for my next prompts<cr>',
-  { desc = "Code Companion Agent" }
-)
-
--- Models
-wk.add({
-  { "<leader>as", group = "Select Model" },
-})
-map({ "n" }, "<Leader>asx", "<cmd>CodeCompanionChat adapter=grok<cr>", { desc = "Grok" })
-map({ "n" }, "<Leader>asc", "<cmd>CodeCompanionChat adapter=anthropic<cr>", { desc = "Cláudia" })
-map({ "n" }, "<Leader>asg", "<cmd>CodeCompanionChat adapter=openai<cr>", { desc = "GPTelson" })
-
-map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
-map({ "n", "v" }, "<Leader>ai", ":CodeCompanion @{files} #{lsp} #{buffer} ", { desc = "Code Companion Inline" })
-
-map(
-  { "n", "v" },
-  "<Leader>af",
-  "<cmd>CodeCompanion /fix #{lsp} #{buffer} @{files} <cr>",
-  { desc = "Code Companion Fix" }
-)
-map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
+map({ "n" }, "<leader>aMv", "<cmd>Minuet virtualtext toggle<cr>", { desc = "Minuet toggle virtualtext" })
+map({ "n" }, "<leader>aMe", "<cmd>Minuet virtualtext enable<cr>", { desc = "Minuet enable virtualtext" })
+map({ "n" }, "<leader>aMb", "<cmd>Minuet blink toggle<cr>", { desc = "Minuet blink toggle" })
+map({ "n" }, "<leader>aMa", "<cmd>Minuet lsp attach<cr>", { desc = "Minuet lsp attach" })
+map({ "n" }, "<leader>aMd", "<cmd>Minuet lsp detach<cr>", { desc = "Minuet lsp detach" })
 
 --#endregion
 

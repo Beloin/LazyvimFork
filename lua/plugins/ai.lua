@@ -60,7 +60,7 @@ return {
   --         model = "grok-4-1-fast-reasoning",
   --       },
   --       openai = {
-  --         model = "gpt-5.1",
+  --         model = "GPT-5.2-Codex",
   --       },
   --       claude = {
   --         endpoint = "https://api.anthropic.com",
@@ -133,148 +133,243 @@ return {
   -- },
 
   -- Code Companion works quite well as a Sidekick
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "MeanderingProgrammer/render-markdown.nvim",
+  --     -- "OXY2DEV/markview.nvim",
+  --     "nvim-mini/mini.diff",
+  --     "ravitemer/mcphub.nvim",
+  --     "ravitemer/codecompanion-history.nvim",
+  --     "lalitmee/codecompanion-spinners.nvim",
+  --     "j-hui/fidget.nvim",
+  --   },
+  --   config = function()
+  --     --#region Keymaps
+  --     local map = vim.keymap.set
+  --     local wk = require("which-key")
+  --     map({ "n" }, "<Leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Code Companion Chat" })
+  --     map({ "v" }, "<Leader>ac", "<cmd>CodeCompanionChat Add<cr>", { desc = "Code Companion Chat" })
+  --     map({ "n" }, "<Leader>ah", "<cmd>CodeCompanionHistory<cr>", { desc = "Code Companion history" })
+  --     map(
+  --       { "n", "v" },
+  --       "<Leader>ag",
+  --       '<cmd>CodeCompanion you can use @{files}, @{fetch_webpage}, @{insert_edit_into_file}, @{cmd_runner}, @{mcphub}, @{agent} Answer only with "Ok!" respecting any schema and wait for my next prompts<cr>',
+  --       { desc = "Code Companion Agent" }
+  --     )
+  --
+  --     -- Models
+  --     wk.add({
+  --       { "<leader>as", group = "Select Model" },
+  --     })
+  --     map({ "n" }, "<Leader>asx", "<cmd>CodeCompanionChat adapter=grok<cr>", { desc = "Grok" })
+  --     map({ "n" }, "<Leader>asc", "<cmd>CodeCompanionChat adapter=anthropic<cr>", { desc = "Cláudia" })
+  --     map({ "n" }, "<Leader>asg", "<cmd>CodeCompanionChat adapter=openai<cr>", { desc = "GPTelson" })
+  --
+  --     map({ "n", "v" }, "<Leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Code Companion Actions" })
+  --     map({ "n", "v" }, "<Leader>ai", ":CodeCompanion @{files} #{lsp} #{buffer} ", { desc = "Code Companion Inline" })
+  --
+  --     map(
+  --       { "n", "v" },
+  --       "<Leader>af",
+  --       "<cmd>CodeCompanion /fix #{lsp} #{buffer} @{agent} <cr>",
+  --       { desc = "Code Companion Fix" }
+  --     )
+  --     map({ "v" }, "<Leader>ae", "<cmd>CodeCompanion /explain<cr>", { desc = "Code Companion Explain" })
+  --     --#endregion
+  --
+  --     require("codecompanion").setup({
+  --       prompt_library = {
+  --         markdown = {
+  --           dirs = {
+  --             vim.fn.getcwd() .. "/.prompts",
+  --             vim.fn.stdpath("config") .. "/prompts",
+  --           },
+  --         },
+  --       },
+  --
+  --       display = {
+  --         chat = {
+  --           window = {
+  --             layout = "vertical",
+  --             width = 0.30,
+  --           },
+  --         },
+  --       },
+  --
+  --       adapters = {
+  --         http = {
+  --           openai = function()
+  --             return require("codecompanion.adapters").extend("openai", {
+  --               env = {
+  --                 api_key = "OPENAI_API_KEY",
+  --                 model = "GPT-5.2-Codex",
+  --               },
+  --               schema = {
+  --                 model = {
+  --                   default = "GPT-5.2-Codex",
+  --                 },
+  --               },
+  --             })
+  --           end,
+  --           claude = function()
+  --             return require("codecompanion.adapters").extend("anthropic", {
+  --               env = {
+  --                 api_key = "ANTHROPIC_API_KEY",
+  --               },
+  --               schema = {
+  --                 model = {
+  --                   default = "claude-sonnet-4-6",
+  --                 },
+  --               },
+  --             })
+  --           end,
+  --           ollama = function()
+  --             return require("codecompanion.adapters").extend("ollama", {
+  --               env = {
+  --                 url = "http://localhost:11434",
+  --                 api_key = "OLLAMA_API_KEY",
+  --                 model = "qwen2.5-coder:14b",
+  --               },
+  --               headers = {
+  --                 ["Content-Type"] = "application/json",
+  --                 ["Authorization"] = "Bearer ${api_key}",
+  --               },
+  --               parameters = {
+  --                 sync = true,
+  --               },
+  --             })
+  --           end,
+  --           deepseek = function()
+  --             return require("codecompanion.adapters").extend("deepseek", {
+  --               env = {
+  --                 api_key = "DEEPSEEK_API_KEY",
+  --                 model = "deepseek-chat",
+  --               },
+  --               schema = {
+  --                 model = {
+  --                   default = "deepseek-chat",
+  --                 },
+  --               },
+  --             })
+  --           end,
+  --           xai = function()
+  --             return require("codecompanion.adapters").extend("xai", {
+  --               schema = {
+  --                 model = {
+  --                   -- default = "grok-code-fast-1",
+  --                   -- default = "grok-4-1-fast-reasoning",
+  --                   default = "grok-4-fast-reasoning",
+  --                   choices = {
+  --                     "grok-4-fast-reasoning",
+  --                     "grok-4-1-fast-reasoning",
+  --                     "grok-code-fast-1",
+  --                   },
+  --                 },
+  --                 presence_penalty = {
+  --                   hidden = true,
+  --                 },
+  --                 frequency_penalty = {
+  --                   hidden = true,
+  --                 },
+  --               },
+  --             })
+  --           end,
+  --           grok = function()
+  --             return require("codecompanion.adapters").extend("openai_compatible", {
+  --               name = "grok",
+  --               url = "https://api.x.ai/v1/chat/completions",
+  --               env = {
+  --                 api_key = "XAI_API_KEY",
+  --               },
+  --               schema = {
+  --                 model = {
+  --                   -- default = "grok-code-fast-1",
+  --                   default = "grok-4-1-fast-reasoning",
+  --                 },
+  --                 presence_penalty = {
+  --                   hidden = true,
+  --                 },
+  --                 frequency_penalty = {
+  --                   hidden = true,
+  --                 },
+  --               },
+  --             })
+  --           end,
+  --         },
+  --       },
+  --       strategies = {
+  --         chat = { adapter = "xai", yolo = true },
+  --         inline = { adapter = "xai" },
+  --         agent = { adapter = "xai", yolo = true },
+  --       },
+  --       extensions = {
+  --         mcphub = {
+  --           callback = "mcphub.extensions.codecompanion",
+  --           opts = {
+  --             make_vars = true,
+  --             make_slash_commands = true,
+  --             show_result_in_chat = true,
+  --           },
+  --         },
+  --         history = {
+  --           enabled = true,
+  --           opts = {
+  --             dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
+  --           },
+  --         },
+  --         spinner = {
+  --           enabled = true,
+  --           opts = {
+  --             -- Your spinner configuration goes here
+  --             style = "cursor-relative",
+  --           },
+  --         },
+  --       },
+  --     })
+  --   end,
+  -- },
+
+  -- Claude Code
   {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      "MeanderingProgrammer/render-markdown.nvim",
-      -- "OXY2DEV/markview.nvim",
-      "nvim-mini/mini.diff",
-      "ravitemer/mcphub.nvim",
-      "ravitemer/codecompanion-history.nvim",
-      "lalitmee/codecompanion-spinners.nvim",
-      "j-hui/fidget.nvim",
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      {
+        "<leader>as",
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+      },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
-    config = function()
-      require("codecompanion").setup({
-        prompt_library = {
-          markdown = {
-            dirs = {
-              vim.fn.getcwd() .. "/.prompts",
-              vim.fn.stdpath("config") .. "/prompts",
-            },
-          },
-        },
+  },
 
-        display = {
-          chat = {
-            window = {
-              layout = "vertical",
-              width = 0.35,
-            },
-          },
-        },
-
-        adapters = {
-          http = {
-            openai = function()
-              return require("codecompanion.adapters").extend("openai", {
-                env = {
-                  api_key = "OPENAI_API_KEY",
-                  model = "gpt-5.1",
-                },
-                schema = {
-                  model = {
-                    default = "gpt-5.1",
-                  },
-                },
-              })
-            end,
-            claude = function()
-              return require("codecompanion.adapters").extend("anthropic", {
-                env = {
-                  api_key = "ANTHROPIC_API_KEY",
-                },
-                schema = {
-                  model = {
-                    default = "claude-sonnet-4-6",
-                  },
-                },
-              })
-            end,
-            ollama = function()
-              return require("codecompanion.adapters").extend("ollama", {
-                env = {
-                  url = "http://localhost:11434",
-                  api_key = "OLLAMA_API_KEY",
-                  model = "qwen2.5-coder:14b",
-                },
-                headers = {
-                  ["Content-Type"] = "application/json",
-                  ["Authorization"] = "Bearer ${api_key}",
-                },
-                parameters = {
-                  sync = true,
-                },
-              })
-            end,
-            deepseek = function()
-              return require("codecompanion.adapters").extend("deepseek", {
-                env = {
-                  api_key = "DEEPSEEK_API_KEY",
-                  model = "deepseek-chat",
-                },
-                schema = {
-                  model = {
-                    default = "deepseek-chat",
-                  },
-                },
-              })
-            end,
-            grok = function()
-              return require("codecompanion.adapters").extend("openai_compatible", {
-                name = "grok",
-                url = "https://api.x.ai/v1/chat/completions",
-                env = {
-                  api_key = "XAI_API_KEY",
-                },
-                schema = {
-                  model = {
-                    -- default = "grok-code-fast-1",
-                    default = "grok-4-1-fast-reasoning",
-                  },
-                  presence_penalty = {
-                    hidden = true,
-                  },
-                  frequency_penalty = {
-                    hidden = true,
-                  },
-                },
-              })
-            end,
-          },
-        },
-        strategies = {
-          chat = { adapter = "grok" },
-          inline = { adapter = "grok" },
-          agent = { adapter = "grok" },
-        },
-        extensions = {
-          mcphub = {
-            callback = "mcphub.extensions.codecompanion",
-            opts = {
-              make_vars = true,
-              make_slash_commands = true,
-              show_result_in_chat = true,
-            },
-          },
-          history = {
-            enabled = true,
-            opts = {
-              dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
-            },
-          },
-          spinner = {
-            enabled = true,
-            opts = {
-              -- Your spinner configuration goes here
-              style = "cursor-relative",
-            },
-          },
-        },
-      })
-    end,
+  -- Gemini Cli
+  {
+    "beloin/gemini-code.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "<leader>agg", "<cmd>GeminiCode<cr>", desc = "Toggle Gemini CLI" },
+      { "<leader>aga", "<cmd>GeminiCodeAutoEdit<cr>", desc = "Toggle Gemini CLI (auto-edit)" },
+      { "<leader>agf", "<cmd>GeminiCodeFocus<cr>", desc = "Focus Gemini CLI" },
+      { "<leader>ada", "<cmd>GeminiCodeDiffAccept<cr>", desc = "Accept Gemini diff" },
+      { "<leader>adr", "<cmd>GeminiCodeDiffDeny<cr>", desc = "Reject Gemini diff" },
+    },
   },
 
   -- UI for CodeCompanion
@@ -346,6 +441,7 @@ return {
             model = "qwen2.5-coder:3b-base", -- medium end
             -- model = "qwen2.5-coder:1.5b-base", -- low end
             -- model = "qwen2.5-coder:7b-base", -- slower high end
+            -- model = " qwen-opus-9b", -- ultra high-end 9b destiled from Claude Opus
             -- model = "deepseek-coder-v2-lite-base", -- slower medium
 
             optional = {
@@ -365,7 +461,7 @@ return {
 
         -- Virtualtext completion
         virtualtext = {
-          auto_trigger_ft = { "go", "lua", "java", "markdown", "dart" },
+          auto_trigger_ft = { "go", "lua", "java", "markdown", "dart", "js", "ts", "elixir" },
           keymap = {
             -- accept whole completion
             accept = "<A-A>",

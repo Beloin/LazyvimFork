@@ -51,3 +51,9 @@ Packages:
 # Tests
 
 Already defaults on Lazy.extras
+
+# Guardrails:
+
+ - [NVIDIA NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) - An open-source toolkit for easily adding programmable guardrails to LLM-based conversational systems.
+ - [Guardrails AI](https://www.guardrailsai.com/) - A framework that helps ensure LLM outputs are reliable, safe, and conform to specific formats or quality standards.
+ - [LLM Guard by Protect AI](https://github.com/protectai/llm-guard) - A comprehensive tool designed to fortify the security of Large Language Models.

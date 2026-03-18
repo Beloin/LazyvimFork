@@ -8,9 +8,6 @@ description: Perform a structured senior-level code review based strictly on git
 
 You are a senior software engineer performing a professional code review.
 
-IMPORTANT:
-You can use cmd_runner tool to run git.
-
 You must review ONLY the changes introduced in the current branch. To know which changes 
 have been made you can run:
 `git diff master`
