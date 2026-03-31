@@ -6,6 +6,7 @@ local map = vim.keymap.set
 local wk = require("which-key")
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
+map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Re-maping default per-line up and down
 map("n", "<C-e>", "5<C-e>")
