@@ -337,6 +337,9 @@ return {
     "coder/claudecode.nvim",
     dependencies = { "folke/snacks.nvim" },
     config = true,
+    -- opts = {
+    --   terminal_cmd = "ollama launch claude --model minimax-m2.7:cloud",
+    -- },
     keys = {
       { "<leader>a", nil, desc = "AI/Claude Code" },
       { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
@@ -358,19 +361,101 @@ return {
     },
   },
 
-  -- Gemini Cli
   {
-    "beloin/gemini-code.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "<leader>agg", "<cmd>GeminiCode<cr>", desc = "Toggle Gemini CLI" },
-      { "<leader>aga", "<cmd>GeminiCodeAutoEdit<cr>", desc = "Toggle Gemini CLI (auto-edit)" },
-      { "<leader>agf", "<cmd>GeminiCodeFocus<cr>", desc = "Focus Gemini CLI" },
-      { "<leader>ada", "<cmd>GeminiCodeDiffAccept<cr>", desc = "Accept Gemini diff" },
-      { "<leader>adr", "<cmd>GeminiCodeDiffDeny<cr>", desc = "Reject Gemini diff" },
+    "nickjvandyke/opencode.nvim",
+    version = "*", -- Latest stable release
+    dependencies = {
+      {
+        -- `snacks.nvim` integration is recommended, but optional
+        ---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
+        "folke/snacks.nvim",
+        optional = true,
+        opts = {
+          input = {}, -- Enhances `ask()`
+          picker = { -- Enhances `select()`
+            actions = {
+              opencode_send = function(...)
+                return require("opencode").snacks_picker_send(...)
+              end,
+            },
+            win = {
+              input = {
+                keys = {
+                  ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+                },
+              },
+            },
+          },
+        },
+      },
     },
+    config = function()
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {
+        -- Your configuration, if any; goto definition on the type or field for details
+      }
+
+      vim.o.autoread = true -- Required for `opts.events.reload`
+
+      -- Recommended/example keymaps
+      vim.keymap.set({ "n", "x" }, "<C-a>", function()
+        require("opencode").ask("@this: ", { submit = true })
+      end, { desc = "Ask opencode…" })
+      vim.keymap.set({ "n", "x" }, "<C-x>", function()
+        require("opencode").select()
+      end, { desc = "Execute opencode action…" })
+      vim.keymap.set({ "n", "t" }, "<C-O>", function()
+        require("opencode").toggle()
+      end, { desc = "Toggle opencode" })
+
+      vim.keymap.set({ "n", "x" }, "go", function()
+        return require("opencode").operator("@this ")
+      end, { desc = "Add range to opencode", expr = true })
+      vim.keymap.set("n", "goo", function()
+        return require("opencode").operator("@this ") .. "_"
+      end, { desc = "Add line to opencode", expr = true })
+
+      vim.keymap.set("n", "<S-C-u>", function()
+        require("opencode").command("session.half.page.up")
+      end, { desc = "Scroll opencode up" })
+      vim.keymap.set("n", "<S-C-d>", function()
+        require("opencode").command("session.half.page.down")
+      end, { desc = "Scroll opencode down" })
+
+      -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
+      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+      vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+    end,
   },
+
+  -- {
+  --   "kkrampis/codex.nvim",
+  --   lazy = true,
+  --   cmd = { "Codex", "CodexToggle" }, -- Optional: Load only on command execution
+  --   keys = {
+  --     {
+  --       "<leader>agc", -- Change this to your preferred keybinding
+  --       function()
+  --         require("codex").toggle()
+  --       end,
+  --       desc = "Toggle Codex popup or side-panel",
+  --       mode = { "n", "t" },
+  --     },
+  --   },
+  --   opts = {
+  --     keymaps = {
+  --       toggle = nil, -- Keybind to toggle Codex window (Disabled by default, watch out for conflicts)
+  --       quit = "<C-q>", -- Keybind to close the Codex window (default: Ctrl + q)
+  --     }, -- Disable internal default keymap (<leader>cc -> :CodexToggle)
+  --     border = "rounded", -- Options: 'single', 'double', or 'rounded'
+  --     width = 0.35, -- Width of the floating window (0.0 to 1.0)
+  --     height = 0.8, -- Height of the floating window (0.0 to 1.0)
+  --     model = nil, -- Optional: pass a string to use a specific model (e.g., 'o3-mini')
+  --     autoinstall = true, -- Automatically install the Codex CLI if not found
+  --     panel = true, -- Open Codex in a side-panel (vertical split) instead of floating window
+  --     use_buffer = false, -- Capture Codex stdout into a normal buffer instead of a terminal buffer
+  --   },
+  -- },
 
   -- UI for CodeCompanion
   {

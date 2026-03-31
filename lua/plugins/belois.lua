@@ -159,6 +159,17 @@ return {
   },
 
   {
+    "Beloin/heph.nvim",
+    dir = "/home/beloin/Documents/software/heph.nvim",
+    config = function()
+      require("heph").setup()
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+
+  {
     "fabridamicelli/cronex.nvim",
     opts = {},
   },
@@ -166,5 +177,4 @@ return {
   -- {
   --   "rest-nvim/rest.nvim",
   -- },
-
 }
