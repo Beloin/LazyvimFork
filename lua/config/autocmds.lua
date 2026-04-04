@@ -70,6 +70,11 @@ vim.opt.laststatus = 3
 local java_setup = require("external.java-custom-setup")
 java_setup.setup()
 
-
--- Configure minuet
-
+-- Auto insert mode when entering a terminal buffer
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter", "TermOpen" }, {
+  group = vim.api.nvim_create_augroup("terminal_auto_insert", { clear = true }),
+  pattern = "term://*",
+  callback = function()
+    vim.cmd("startinsert")
+  end,
+})

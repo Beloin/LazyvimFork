@@ -7,6 +7,11 @@ local wk = require("which-key")
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+-- Inside terminal leave with default navigation keys
+vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
+vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = "Move to window below" })
+vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = "Move to window above" })
+vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
 
 -- Re-maping default per-line up and down
 map("n", "<C-e>", "5<C-e>")
