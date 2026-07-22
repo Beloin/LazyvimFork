@@ -415,7 +415,7 @@ return {
       vim.keymap.set({ "n", "t" }, "<C-z>", function()
         require("opencode").toggle()
       end, { desc = "Toggle opencode" })
-      vim.keymap.set({ "n", "t" }, "<leader>at", function()
+      vim.keymap.set({ "n" }, "<leader>at", function()
         require("opencode").toggle()
       end, { desc = "Toggle opencode" })
 
@@ -430,7 +430,7 @@ return {
         return require("opencode").operator("@this ") .. "_"
       end, { desc = "Add line to opencode", expr = true })
       vim.keymap.set("n", "<leader>as", function()
-        return require("opencode").operator("@this ") .. "_"
+        return require("opencode").operator("@buffer ") .. "_"
       end, { desc = "Send line to opencode", expr = true })
 
       vim.keymap.set("n", "<S-C-u>", function()
@@ -564,7 +564,7 @@ return {
 
         -- Virtualtext completion
         virtualtext = {
-          auto_trigger_ft = { "go", "lua", "java", "markdown", "dart", "js", "ts", "elixir" },
+          auto_trigger_ft = { "go", "lua", "java", "markdown", "dart", "js", "ts", "elixir", "rs", "rust" },
           keymap = {
             -- accept whole completion
             accept = "<A-A>",

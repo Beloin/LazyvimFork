@@ -7,11 +7,15 @@ local wk = require("which-key")
 
 map("i", "jk", "<ESC>", { desc = "Escape insert mode" })
 map("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
 -- Inside terminal leave with default navigation keys
 vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-w>h]], { desc = "Move to left window" })
 vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-w>j]], { desc = "Move to window below" })
 vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-w>k]], { desc = "Move to window above" })
 vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-w>l]], { desc = "Move to right window" })
+
+-- Remove leader in terminal
+-- vim.keymap.set('t', '<space>', '<space>', { noremap = true })
 
 -- Re-maping default per-line up and down
 map("n", "<C-e>", "5<C-e>")
@@ -27,22 +31,13 @@ map({ "i", "n" }, "<F10>", function()
 end, { desc = "Restart DAP Session" })
 map({ "i", "n" }, "<F11>", "<cmd>DapTerminate<CR>", { desc = "Terminate DAP" })
 
---#region Refactor
--- Prime Refactor maps
-wk.add({
-  { "<leader>r", group = "Prime Refactor" },
-})
-
-map("x", "<leader>re", ":Refactor extract ")
-map("x", "<leader>rf", ":Refactor extract_to_file ")
-map("x", "<leader>rv", ":Refactor extract_var ")
-map({ "n", "x" }, "<leader>ri", ":Refactor inline_var")
-map("n", "<leader>rI", ":Refactor inline_func")
-map("n", "<leader>rb", ":Refactor extract_block")
-map("n", "<leader>rbf", ":Refactor extract_block_to_file")
---#endregion
-
 map("n", "<leader>we", "<cmd>Neotree<cr>", { desc = "Neotree from Here" })
+
+map("n", "<leader>bc", function()
+  local fname = vim.fn.expand("%:.")
+  vim.fn.setreg("+", fname)
+  vim.notify("Copied: " .. fname)
+end, { desc = "Copy buffer file name" })
 
 map({ "n", "x" }, "d", '"_d')
 
@@ -124,3 +119,15 @@ vim.keymap.set("n", "<leader>fgc", function()
 end, { desc = "Choose a global collection and open it" })
 
 --#endregion
+
+local actions = require("telescope.actions")
+require("telescope").setup({
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-a>"] = actions.results_scrolling_left,
+        ["<C-e>"] = actions.results_scrolling_right,
+      }
+    }
+  }
+})
