@@ -379,7 +379,7 @@ return {
 
         local function launch(model)
           local ctx = tonumber(model.context) or 0
-          local cmd = ("ollama launch claude --model %s --effort high --permission-mode auto"):format(model.name)
+          local cmd = ("ollama launch claude --model %s -- --effort high --permission-mode auto"):format(model.name)
           require("claudecode").setup({
             terminal_cmd = cmd,
             env = { CLAUDE_CODE_MAX_CONTEXT_TOKENS = tostring(ctx) },
