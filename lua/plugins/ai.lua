@@ -342,7 +342,7 @@ return {
       {
         "<leader>ac",
         function()
-          local cfg = require("claudecode.config")
+          local cfg = require("claudecode").state.config
           if cfg.terminal_cmd == nil then
             vim.cmd("ClaudeCodeWithModel")
           else
