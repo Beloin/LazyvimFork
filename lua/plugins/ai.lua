@@ -333,33 +333,89 @@ return {
   -- },
 
   -- Claude Code
-  -- {
-  --   "coder/claudecode.nvim",
-  --   dependencies = { "folke/snacks.nvim" },
-  --   config = true,
-  --   -- opts = {
-  --   --   terminal_cmd = "ollama launch claude --model minimax-m2.7:cloud",
-  --   -- },
-  --   keys = {
-  --     { "<leader>a", nil, desc = "AI/Claude Code" },
-  --     { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-  --     { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-  --     { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-  --     { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-  --     { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-  --     { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-  --     { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-  --     {
-  --       "<leader>as",
-  --       "<cmd>ClaudeCodeTreeAdd<cr>",
-  --       desc = "Add file",
-  --       ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
-  --     },
-  --     -- Diff management
-  --     { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-  --     { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
-  --   },
-  -- },
+  {
+    "coder/claudecode.nvim",
+    dependencies = { "folke/snacks.nvim" },
+    cmd = { "ClaudeCode", "ClaudeCodeWithModel", "ClaudeCodeSelectModel" },
+    keys = {
+      { "<leader>a", nil, desc = "AI/Claude Code" },
+      { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<leader>am", "<cmd>ClaudeCodeWithModel<cr>", desc = "Claude (pick model + ctx)" },
+      { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      -- { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      {
+        "<leader>as",
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
+      },
+      -- Diff management
+      { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    },
+    config = function()
+      require("claudecode").setup({})
+
+      -- Pick a model + context window from lua/config/cc.json and launch Claude Code
+      -- with `CLAUDE_CODE_MAX_CONTEXT_TOKENS=<ctx> ollama launch claude --model <name>`.
+      -- The last picked model sticks as terminal_cmd for subsequent :ClaudeCode calls.
+      vim.api.nvim_create_user_command("ClaudeCodeWithModel", function()
+        local pickers = require("telescope.pickers")
+        local finders = require("telescope.finders")
+        local conf = require("telescope.config").values
+        local actions = require("telescope.actions")
+        local action_state = require("telescope.actions.state")
+
+        local cc_path = vim.fn.stdpath("config") .. "/lua/config/cc.json"
+        local ok, data = pcall(vim.fn.json_decode, table.concat(vim.fn.readfile(cc_path), "\n"))
+        if not ok or not data or not data.models or #data.models == 0 then
+          vim.notify("ClaudeCodeWithModel: failed to read " .. cc_path, vim.log.levels.ERROR)
+          return
+        end
+
+        local function launch(model)
+          local ctx = tonumber(model.context) or 0
+          local cmd = ("ollama launch claude --model %s --effort high --permission-mode auto"):format(model.name)
+          require("claudecode").setup({
+            terminal_cmd = cmd,
+            env = { CLAUDE_CODE_MAX_CONTEXT_TOKENS = tostring(ctx) },
+          })
+          vim.cmd("ClaudeCode")
+        end
+
+        pickers
+          .new({}, {
+            prompt_title = "Claude Code model",
+            finder = finders.new_table({
+              results = data.models,
+              entry_maker = function(m)
+                return {
+                  value = m,
+                  display = string.format("%-30s  ctx=%d", m.name, m.context),
+                  ordinal = m.name,
+                }
+              end,
+            }),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = function(prompt_bufnr, _)
+              actions.select_default:replace(function()
+                local sel = action_state.get_selected_entry()
+                actions.close(prompt_bufnr)
+                if sel then
+                  launch(sel.value)
+                end
+              end)
+              return true
+            end,
+          })
+          :find()
+      end, {})
+    end,
+  },
 
   {
     "nickjvandyke/opencode.nvim",
@@ -397,52 +453,33 @@ return {
 
       vim.o.autoread = true -- Required for `opts.events.reload`
 
-      -- Recommended/example keymaps
-      vim.keymap.set({ "n", "x" }, "<C-a>", function()
-        require("opencode").ask("@this: ", { submit = true })
-      end, { desc = "Ask opencode…" })
-      vim.keymap.set({ "n", "x" }, "<leader>aa", function()
+      -- All opencode keymaps are prefixed with <leader>ao
+      vim.keymap.set({ "n", "x" }, "<leader>aoa", function()
         require("opencode").ask("@this: ", { submit = true })
       end, { desc = "Ask opencode…" })
 
-      vim.keymap.set({ "n", "x" }, "<C-x>", function()
-        require("opencode").select()
-      end, { desc = "Execute opencode action…" })
-      vim.keymap.set({ "n", "x" }, "<leader>ao", function()
+      vim.keymap.set({ "n", "x" }, "<leader>aos", function()
         require("opencode").select()
       end, { desc = "Execute opencode action…" })
 
-      vim.keymap.set({ "n", "t" }, "<C-z>", function()
-        require("opencode").toggle()
-      end, { desc = "Toggle opencode" })
-      vim.keymap.set({ "n" }, "<leader>at", function()
+      vim.keymap.set({ "n", "t" }, "<leader>aot", function()
         require("opencode").toggle()
       end, { desc = "Toggle opencode" })
 
-      vim.keymap.set({ "x" }, "go", function()
-        return require("opencode").operator("@this ")
-      end, { desc = "Add range to opencode", expr = true })
-      vim.keymap.set({ "x" }, "<leader>as", function()
+      vim.keymap.set({ "x" }, "<leader>aor", function()
         return require("opencode").operator("@this ")
       end, { desc = "Send range to opencode", expr = true })
 
-      vim.keymap.set("n", "goo", function()
-        return require("opencode").operator("@this ") .. "_"
-      end, { desc = "Add line to opencode", expr = true })
-      vim.keymap.set("n", "<leader>as", function()
+      vim.keymap.set("n", "<leader>aol", function()
         return require("opencode").operator("@buffer ") .. "_"
       end, { desc = "Send line to opencode", expr = true })
 
-      vim.keymap.set("n", "<S-C-u>", function()
+      vim.keymap.set("n", "<leader>aou", function()
         require("opencode").command("session.half.page.up")
       end, { desc = "Scroll opencode up" })
-      vim.keymap.set("n", "<S-C-d>", function()
+      vim.keymap.set("n", "<leader>aod", function()
         require("opencode").command("session.half.page.down")
       end, { desc = "Scroll opencode down" })
-
-      -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
-      vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
-      vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
     end,
   },
 
