@@ -353,11 +353,22 @@ return {
       },
       { "<leader>am", "<cmd>ClaudeCodeWithModel<cr>", desc = "Claude (pick model + ctx)" },
       { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-      { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      {
+        "<leader>ar",
+        function()
+          local cfg = require("claudecode").state.config
+          if cfg.terminal_cmd == nil then
+            vim.cmd("ClaudeCodeResumeWithModel")
+          else
+            vim.cmd("ClaudeCode --resume")
+          end
+        end,
+        desc = "Resume Claude",
+      },
       { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
       -- { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
       { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-      { "<leader>as", "<cmd>ClaudeCodeSend<cr>", desc = "Send buffer to Claude" },
+      { "<leader>as", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
       { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
       {
         "<leader>as",
@@ -375,7 +386,8 @@ return {
       -- Pick a model + context window from lua/config/cc.json and launch Claude Code
       -- with `CLAUDE_CODE_MAX_CONTEXT_TOKENS=<ctx> ollama launch claude --model <name>`.
       -- The last picked model sticks as terminal_cmd for subsequent :ClaudeCode calls.
-      vim.api.nvim_create_user_command("ClaudeCodeWithModel", function()
+      -- `extra_args` is appended to the :ClaudeCode command (e.g. "--resume").
+      local function pick_and_launch(extra_args)
         local pickers = require("telescope.pickers")
         local finders = require("telescope.finders")
         local conf = require("telescope.config").values
@@ -396,7 +408,7 @@ return {
             terminal_cmd = cmd,
             env = { CLAUDE_CODE_MAX_CONTEXT_TOKENS = tostring(ctx) },
           })
-          vim.cmd("ClaudeCode")
+          vim.cmd("ClaudeCode" .. (extra_args and (" " .. extra_args) or ""))
         end
 
         pickers
@@ -425,6 +437,14 @@ return {
             end,
           })
           :find()
+      end
+
+      vim.api.nvim_create_user_command("ClaudeCodeWithModel", function()
+        pick_and_launch()
+      end, {})
+
+      vim.api.nvim_create_user_command("ClaudeCodeResumeWithModel", function()
+        pick_and_launch("--resume")
       end, {})
     end,
   },
