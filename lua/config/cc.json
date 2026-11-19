@@ -4,6 +4,7 @@
     { "name": "minimax-m3:cloud", "context": 512000 },
     { "name": "glm-5.3:cloud", "context": 1000000 },
     { "name": "glm-5.3-flash:cloud", "context": 1000000 },
-    { "name": "kimi-k2.7-code:cloud", "context": 256000 }
+    { "name": "kimi-k2.7-code:cloud", "context": 256000 },
+    { "name": "glm-5.3-flash:cloud", "context": 1000000 }
   ]
 }

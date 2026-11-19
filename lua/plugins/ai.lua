@@ -515,6 +515,46 @@ return {
     end,
   },
 
+  -- codex.nvim (nwiizo) - Codex CLI integration
+  {
+    "nwiizo/codex.nvim",
+    event = "VeryLazy", -- load before selecting text to show Ask/Edit hints
+    cmd = {
+      "Codex",
+      "CodexOpen",
+      "CodexFocus",
+      "CodexResume",
+      "CodexContinue",
+      "CodexFork",
+      "CodexReview",
+      "CodexImage",
+      "CodexPrompt",
+      "CodexAsk",
+      "CodexAskVisual",
+      "CodexFollowUp",
+      "CodexEdit",
+      "CodexSend",
+      "CodexSendVisual",
+      "CodexAddVisual",
+      "CodexAdd",
+      "CodexTreeAdd",
+      "CodexDiff",
+      "CodexInterrupt",
+      "CodexStatus",
+      "CodexStop",
+      "CodexHealth",
+    },
+    keys = {
+      { "<leader>agx", "<cmd>CodexFocus<cr>", desc = "Focus or hide Codex" },
+      { "<leader>agb", "<cmd>CodexAdd<cr>", desc = "Add current buffer to Codex" },
+      { "<leader>aga", "<cmd>CodexAsk<cr>", desc = "Ask Codex with file context" },
+      { "<leader>ags", "<cmd>CodexSend<cr>", desc = "Send line to Codex" },
+      { "<leader>ags", ":CodexSend<CR>", mode = "x", desc = "Send selected lines to Codex" },
+    },
+    opts = {},
+  },
+
+  -- OpenAI Codex
   -- {
   --   "kkrampis/codex.nvim",
   --   lazy = true,
